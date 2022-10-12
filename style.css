@@ -1,0 +1,64 @@
+:root {
+  font-size: 62.5%;
+}
+
+@font-face {
+  font-family: "Magra Bold 600";
+  src: url("assets/fonts/Magra\ Bold\ 600.ttf");
+}
+
+body {
+  font-size: 1.6rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  height: 90px;
+  top: 0;
+  left: 0;
+  padding-left: 12rem;
+  padding-right: 12rem;
+  background: rgba(242, 120, 92, 0.7);
+  box-shadow: 0px 4px 4px 0px rgba(13, 96, 111, 0.5);
+}
+
+.logo__text {
+  font-family: "Magra Bold 600", sans-serif;
+  font-size: 3.2rem;
+  color: #ffffff;
+}
+
+.nav__list {
+  padding: 0;
+}
+
+.nav__list > * {
+  display: inline;
+  margin-right: 3.8rem;
+}
+
+.nav__link {
+  text-decoration: none;
+  color: #ffffff;
+  font-family: 'Red Hat Text', sans-serif;
+}
+
+.login-btn {
+  width: 103px;
+  height: 41px;
+  border-radius: 10px;
+  background-color: rgba(13, 96, 111, 1);
+  box-shadow: 0px 2px 3px 0px rgba(13, 96, 111, 0.16);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  color: #ffffff;
+  font-family: 'Red Hat Text', sans-serif;
+  border: none;
+}
