@@ -1,3 +1,5 @@
+/* Global styles */
+
 :root {
   font-size: 62.5%;
 }
@@ -15,6 +17,8 @@ body {
 * {
   box-sizing: border-box;
 }
+
+/* Heading */
 
 .header {
   display: flex;
@@ -66,7 +70,7 @@ body {
 
 
 
-/*  --------------------- */
+/*  Section 1 (preview) */
 
 
 
@@ -154,4 +158,46 @@ body {
   border: none;
   color: #ffffff;
   padding: 13px 34px;
+}
+
+
+
+/* Section 2 */
+
+.steps {
+  text-align: center;
+  padding: 50px 130px;
+}
+
+.steps__heading {
+  text-transform: uppercase;
+  font-family: 'Red Hat Text';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 4rem;
+  color: #F2785C;
+}
+
+
+.steps-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 5px;
+}
+
+.steps__img {
+  margin-bottom: 5px;
+}
+
+.steps__text {
+  font-family: 'Aleo';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 2rem;
+  color: #0D606F;
+}
+
+.steps-wrap > div:nth-child(2) {
+  margin-left: 7rem;
 }
