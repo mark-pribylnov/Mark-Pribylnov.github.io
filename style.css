@@ -9,6 +9,7 @@
 
 body {
   font-size: 1.6rem;
+  margin: 0;
 }
 
 * {
@@ -61,4 +62,96 @@ body {
   color: #ffffff;
   font-family: 'Red Hat Text', sans-serif;
   border: none;
+}
+
+
+
+/*  --------------------- */
+
+
+
+.preview {
+  width: 100%;
+  height: 100vh;
+  max-height: 765px;
+  padding-top: 122px;
+  padding-left: 120px;
+  background-image: url("assets/img/bg.jpg");
+  background-size: cover;
+}
+
+.preview-content {
+  width: 89.2rem;
+  height: 422px;
+}
+
+.preview__heading {
+  margin: 0;
+  font-size: 8rem;
+  font-family: 'Aleo', serif;
+  font-weight: 700;
+  color:#ffffff;
+}
+
+.preview__text {
+  font-family: 'Aleo';
+  font-style: italic;
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 50px;
+  color: #ffffff;
+}
+
+.search-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 95px;
+  margin-top: 32px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 16px;
+  padding-right: 18px;
+  padding-left: 40px;
+}
+
+.search-form__placeholder {
+  background: none;
+  border: none;
+  height: 6rem;
+  width: 70%;
+  color: #F2785C;
+  font-family: 'Aleo';
+  font-style: italic;
+  font-weight: 400;
+  font-size: 2.4rem;
+}
+
+.search-form__placeholder:focus-visible {
+  outline: none;
+}
+
+.search-form__placeholder::placeholder {
+  color: #F2785C;
+  font-family: 'Aleo';
+  font-style: italic;
+  font-weight: 400;
+  font-size: 2.4rem;
+}
+
+.search-form__placeholder:focus::placeholder {
+  color: transparent;
+}
+
+.search-form__btn {
+  background: #0D606F;
+  box-shadow: 0px 0px 3px rgba(13, 96, 111, 0.08), 0px 2px 3px rgba(13, 96, 111, 0.16);
+  border-radius: 10px;
+  font-family: 'Red Hat Text';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 2.4rem;
+  border: none;
+  color: #ffffff;
+  padding: 13px 34px;
 }
