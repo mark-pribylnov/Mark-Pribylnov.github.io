@@ -201,3 +201,104 @@ body {
 .steps-wrap > div:nth-child(2) {
   margin-left: 7rem;
 }
+
+
+
+/* Section 3 */
+
+.destinations__heading {
+  text-transform: uppercase;
+  font-family: 'Red Hat Text';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 4rem;
+  color: #F2785C;
+}
+
+
+
+/* Section 4 */
+
+
+
+.stories {
+  max-height: 1270px;
+  background-image: url("assets/img/boat.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  padding-left: 120px;
+  padding-right: 120px;
+  padding-top: 85px;
+}
+
+.stories::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.stories > * {
+  position: relative;
+  z-index: 1;
+}
+
+.stories__main-heading {
+  position: absolute;
+  text-transform: uppercase;
+  font-family: 'Red Hat Text';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 4rem;
+  color: #F2785C;
+  top: -45px;
+  left: 552px;
+}
+
+.stories__heading {
+  font-family: 'Aleo';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 3.5rem;
+  color: #0D606F;
+  margin-bottom: 0px;
+}
+
+.stories__img {
+  filter: drop-shadow(0px 4px 4px #0D606F);
+  border-radius: 16px;
+  float: left;
+  margin-right: 40px;
+}
+
+.stories__text {
+  font-family: 'Aleo';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 2rem;
+  color: #0D606F;
+  margin-top: 25px;
+}
+
+.stories__link {
+  font-family: 'Aleo';
+  font-style: bold;
+  font-weight: 700;
+  font-size: 2rem;
+  color: #0D606F;
+}
+
+.story {
+  height: 250px;
+}
+
+.story:nth-of-type(2) h3,
+.story:nth-of-type(3) h3,
+.story:nth-of-type(4) h3 {
+  margin-top: 30px;
+}
