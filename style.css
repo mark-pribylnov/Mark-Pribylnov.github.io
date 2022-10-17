@@ -336,3 +336,51 @@ body {
 .stories-wrap {
   margin-bottom: 50px;
 }
+
+
+
+/* Footer */
+
+
+
+.footer {
+  height: 61px;
+  display: flex;
+  justify-content: space-between;
+  background-image: url("assets/img/boat.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 1331px;
+  background-position: 50% -1270px;
+  color: #ffffff;
+  font-family: 'Red Hat Text';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.6rem;
+  padding: 0 100px;
+}
+
+.footer-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 60.5%;
+}
+
+.footer-fake {
+  height: 100%;
+}
+
+.footer__list {
+  padding: 0;
+  margin: 0;
+}
+
+.footer__list > * {
+  display: inline;
+}
+
+.footer__link {
+  text-decoration: none;
+  color: #ffffff;
+  margin-right: 18px;
+}
