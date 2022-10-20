@@ -4,6 +4,10 @@
   font-size: 62.5%;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-size: 1.6rem;
   margin: 0 auto;
@@ -60,8 +64,16 @@ body {
 
 .nav__link {
   text-decoration: none;
-  color: #ffffff;
+  /* color: #ffffff; */
   font-family: 'Red Hat Text', sans-serif;
+  box-shadow: inset 0 0 0 0 #0D606F;
+  color: #ffffff;
+  transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
+}
+
+.nav__link:hover {
+  box-shadow: inset 110px 0 0 0 #0D606F;
+  color: #ffffff;
 }
 
 .login-btn {
@@ -171,6 +183,9 @@ body {
 
 
 /* Section 2 */
+
+
+
 
 .steps {
   text-align: center;
@@ -383,4 +398,52 @@ body {
   text-decoration: none;
   color: #ffffff;
   margin-right: 18px;
+}
+
+
+/* Animation */
+
+
+.btn_hover {
+  transition: all .35s;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  z-index: 0;
+}
+
+.btn_hover:hover {
+  border: 5px solid #0D606F;
+}
+
+
+.btn_hover:before,
+.btn_hover:after{
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  top: -100%;
+  left: 0;
+  background: #F2785C;
+  z-index: -1;
+  transition: all .35s;
+}
+
+.btn_hover:before{
+  opacity: .5;
+}
+
+.btn_hover:after{
+  transition-delay: .2s;
+}
+
+.btn_hover:hover:before,
+.btn_hover:hover:after{
+  top: 0;
+}
+
+.footer__link img:hover {
+  transform: translateY(-10px);
+  transition: 0.5s;
 }
