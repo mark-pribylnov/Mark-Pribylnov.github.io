@@ -1,4 +1,7 @@
-/* Change button paddings to em, marhins between blocks to rem */
+/* Change button paddings to em, margins to rem */
+/* For width use only % */
+/* Don't use height */
+/* Replace height with paddings */
 
 /* Global styles */
 
@@ -40,13 +43,11 @@ body {
   align-items: center;
   position: absolute;
   width: 100%;
-  height: 90px;
   top: 0;
   left: 0;
-  padding-left: 12rem;
-  padding-right: 12rem;
+  padding: 1.1em 7.5em;
   background: rgba(242, 120, 92, 0.7);
-  box-shadow: 0px 4px 4px 0px rgba(13, 96, 111, 0.5);
+  box-shadow: 0 0.25em 0.25em 0 rgba(13, 96, 111, 0.5);
 }
 
 .logo__text {
@@ -66,7 +67,6 @@ body {
 
 .nav__link {
   text-decoration: none;
-  /* color: #ffffff; */
   font-family: 'Red Hat Text', sans-serif;
   box-shadow: inset 0 0 0 0 #0D606F;
   color: #ffffff;
@@ -74,22 +74,9 @@ body {
 }
 
 .nav__link:hover {
-  box-shadow: inset 110px 0 0 0 #0D606F;
+  box-shadow: inset 7em 0 0 0 #0D606F;
   color: #ffffff;
 }
-
-/* .login-btn {
-  width: 103px;
-  height: 41px;
-  border-radius: 10px;
-  background-color: rgba(13, 96, 111, 1);
-  box-shadow: 0px 2px 3px 0px rgba(13, 96, 111, 0.16);
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  color: #ffffff;
-  font-family: 'Red Hat Text', sans-serif;
-  border: none;
-} */
-
 
 
 /*  Section 1 (preview) */
@@ -98,17 +85,14 @@ body {
 
 .preview {
   width: 100%;
-  height: 100vh;
-  max-height: 765px;
-  padding-top: 122px;
-  padding-left: 120px;
+  height: 48em;
+  padding: 7.6em 7.6em;
   background-image: url("assets/img/bg.jpg");
   background-size: cover;
 }
 
 .preview-content {
-  width: 89.2rem;
-  height: 422px;
+  width: 74.5%;
 }
 
 .preview__heading {
@@ -124,7 +108,7 @@ body {
   font-style: italic;
   font-weight: 700;
   font-size: 2rem;
-  line-height: 50px;
+  line-height: 2.5em;
   color: #ffffff;
 }
 
@@ -132,19 +116,16 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
-  height: 95px;
-  margin-top: 32px;
+  height: 9.5rem;
+  margin-top: 3.2rem;
   background: rgba(255, 255, 255, 0.7);
-  border-radius: 16px;
-  padding-right: 18px;
-  padding-left: 40px;
+  border-radius: 1em;
+  padding: 0 1.1em 0 2.5em;
 }
 
 .search-form__placeholder {
   background: none;
   border: none;
-  height: 6rem;
   width: 70%;
   color: #F2785C;
   font-family: 'Aleo';
@@ -169,20 +150,6 @@ body {
   color: transparent;
 }
 
-/* .search-form__btn {
-  background: #0D606F;
-  box-shadow: 0px 0px 3px rgba(13, 96, 111, 0.08), 0px 2px 3px rgba(13, 96, 111, 0.16);
-  border-radius: 10px;
-  font-family: 'Red Hat Text';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 2.4rem;
-  border: none;
-  color: #ffffff;
-  padding: 13px 34px;
-} */
-
-
 
 /* Section 2 */
 
@@ -191,7 +158,7 @@ body {
 
 .steps {
   text-align: center;
-  padding: 50px 130px;
+  padding: 3.1em 8.1em;
 }
 
 .steps__heading {
@@ -208,11 +175,10 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 5px;
 }
 
 .steps__img {
-  margin-bottom: 5px;
+  margin-bottom: 0.5rem;
 }
 
 .steps__text {
@@ -247,16 +213,13 @@ body {
 
 
 .stories {
-  max-height: 1270px;
+  max-height: 127rem;
   background-image: url("assets/img/boat.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;
-  padding-left: 120px;
-  padding-right: 120px;
-  padding-top: 1px;
-  padding-bottom: 60px;
-  margin-top: 50px;
+  padding: 0.01em 7.5em 3.7em 7.5em;
+  margin-top: 5rem;
 }
 
 .stories::before {
@@ -283,8 +246,8 @@ body {
   font-weight: 500;
   font-size: 4rem;
   color: #F2785C;
-  top: -96px;
-  left: 552px;
+  top: -9.6rem;
+  left: 55.2rem;
   margin: 0;
 }
 
@@ -298,10 +261,10 @@ body {
 }
 
 .stories__img {
-  filter: drop-shadow(0px 4px 4px #0D606F);
-  border-radius: 16px;
+  filter: drop-shadow(0 0.4rem 0.4rem #0D606F);
+  border-radius: 1em;
   float: left;
-  margin-right: 40px;
+  margin-right: 4rem;
 }
 
 .stories__text {
@@ -310,7 +273,7 @@ body {
   font-weight: 400;
   font-size: 2rem;
   color: #0D606F;
-  margin-top: 28px;
+  margin-top: 2.8rem;
 }
 
 .stories__link {
@@ -322,36 +285,18 @@ body {
 }
 
 .story {
-  height: 250px;
+  margin-bottom: 4.25rem;
 }
 
 .story:nth-of-type(2) h3,
 .story:nth-of-type(3) h3,
 .story:nth-of-type(4) h3 {
-  margin-top: 30px;
+  margin-top: 3rem;
 }
 
-/* .stories__btn {
-  width: 228px;
-  height: 59px;
-  background: #0D606F;
-  box-shadow: 0px 0px 3px rgba(13, 96, 111, 0.08), 0px 2px 3px rgba(13, 96, 111, 0.16);
-  border-radius: 10px;
-  font-family: 'Red Hat Text';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 2.4rem;
-  border: none;
-  color: #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 9px;
-  margin: -10px auto 0px auto;
-} */
 
 .stories-wrap {
-  margin-bottom: 50px;
+  margin-bottom: 5rem;
 }
 
 
@@ -361,19 +306,18 @@ body {
 
 
 .footer {
-  height: 61px;
   display: flex;
   justify-content: space-between;
   background-image: url("assets/img/boat.jpg");
   background-repeat: no-repeat;
-  background-size: 100% 1331px;
-  background-position: 50% -1270px;
+  background-size: 100% 133rem;
+  background-position: 50% -127rem;
   color: #ffffff;
   font-family: 'Red Hat Text';
   font-style: normal;
   font-weight: 500;
   font-size: 1.6rem;
-  padding: 0 100px;
+  padding: 0.2em 6.25em;
 }
 
 .footer-wrap {
@@ -399,7 +343,7 @@ body {
 .footer__link {
   text-decoration: none;
   color: #ffffff;
-  margin-right: 18px;
+  margin-right: 1.1em;
 }
 
 
@@ -436,7 +380,7 @@ body {
 
 .btn_stories {
   padding: 0.4em 1.4em;
-  margin: -1rem auto 0 auto;
+  margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -481,6 +425,6 @@ body {
 
 
 .footer__link img:hover {
-  transform: translateY(-10px);
+  transform: translateY(-0.6em);
   transition: 0.5s;
 }
