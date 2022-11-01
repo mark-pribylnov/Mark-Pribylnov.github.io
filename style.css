@@ -1,3 +1,11 @@
+/* Mobile First BRANCH DESCRIPTION
+
+1. Review html structure
+2. Write CSS almost from scratch in the following ofrder: typography, colors, padding. Make layout only when there's nothing else to do.
+3. If you need to, change classes
+
+*/
+
 :root {
   font-size: 62.5%;
 }
@@ -17,6 +25,10 @@ body {
 
 * {
   box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
 }
 
 /* Heading */
@@ -110,7 +122,7 @@ body {
 .search-form__placeholder {
   background: none;
   border: none;
-  width: 70%;
+  width: 55%;
   color: #F2785C;
   font-size: 2.4rem;
 }
@@ -162,18 +174,19 @@ body {
 }
 
 .steps-wrap > div:nth-child(2) {
-  margin-left: 7rem;
+  /* margin-left: 7rem; */
+  /*  Если включить, то на 1440px будет как по макету, но выглядит не по центру */
 }
 
 
 
 /* Section 3 */
-
+/*
 .destinations__heading {
   text-transform: uppercase;
   font-size: 4rem;
   color: #F2785C;
-}
+} */
 
 
 
@@ -181,12 +194,12 @@ body {
 
 
 .stories {
-  max-height: 1280px;
+  /* max-height: 1280px; */
   background-image: url("assets/img/boat.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;
-  padding: 2.5em 7.5em 2em 7.5em;
+  padding: 2.5em 8vw 2em 8vw;
 }
 
 .stories::before {
@@ -216,6 +229,10 @@ body {
   gap: 2.5em;
 }
 
+.story__text-wrapper {
+  width: 63%;
+}
+
 .story:not(:last-child) {
   margin-bottom: 2.5rem;
 }
@@ -238,7 +255,7 @@ body {
 }
 
 .story__img-wrapper {
-  margin: auto 0;
+  align-self: center;
 }
 
 .story__img {
@@ -255,8 +272,12 @@ body {
 
 .story__link {
   font-weight: 700;
-  font-size: 2rem;
   color: #0D606F;
+}
+
+
+.temp_border {
+  border: 2px solid lime;
 }
 
 
@@ -386,4 +407,20 @@ body {
 .footer__link img:hover {
   transform: translateY(-0.6em);
   transition: 0.5s;
+}
+
+
+
+
+@media (max-width: 1024px) {
+  :root {
+    font-size: 50%;
+  }
+}
+
+
+@media (min-width: 1440px) {
+  .stories {
+    padding: 2.5em 7.5em 2em 7.5em;
+  }
 }
