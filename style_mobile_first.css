@@ -1,0 +1,45 @@
+/* Mobile First BRANCH DESCRIPTION
+
+1. Review html structure
+2. Write CSS almost from scratch in the following ofrder: typography, colors, padding. Make layout only when there's nothing else to do.
+3. If you need to, change classes
+
+*/
+
+
+/* ---------- Default generic styles ---------- */
+
+:root {
+  font-size: 62.5%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  position: relative;
+  margin: 0 auto;
+  max-width: 1440px;
+  font-size: 1.6rem;
+  font-family: 'Red Hat Text', sans-serif;
+  color: #ffffff;
+  /* Temporary */
+  background-color: #e6c28f;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+}
+
+.hide {
+  display: none;
+}
+
+
+/* ---------- Elements ---------- */
+
