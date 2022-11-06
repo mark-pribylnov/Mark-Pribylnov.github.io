@@ -33,17 +33,45 @@ body {
 }
 
 img {
-  max-width: 100%;
+  /* max-width: 100%; */
 }
 
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2.8em 1.5em 0 1em;
+}
 
 /* ---------- ELEMENTS ---------- */
+
+
+/* Burger button */
+
+.burger-btn {
+  width: 2.6rem;
+  transform: translateY(-0.3rem);
+}
+
+.burger-btn:before,
+.burger-btn:after,
+.burger-btn div {
+  background: #fff;
+  content: "";
+  display: block;
+  height: 0.25rem;
+  border-radius: 0.25rem;
+  margin: 0.4rem 0;
+}
+
+/* Mobile menu  */
 
 .nav-mobile {
   position: absolute;
   right: 0;
   top: 0;
   width: 42%;
+  max-width: 165px;
   padding: 0.7em 1em 1.5em 0;
   display: flex;
   flex-direction: column;
@@ -53,18 +81,20 @@ img {
   box-shadow: 0px 4px 3px rgba(13, 96, 111, 0.25);
 }
 
+
 /*  */
 
-.nav-mobile__btn {
+
+.nav-mobile__close-btn {
   position: relative;
   width: 21px;
   height: 21px;
   opacity: 0.4;
 }
-.nav-mobile__btn:hover {
+.nav-mobile__close-btn:hover {
   opacity: 1;
 }
-.nav-mobile__btn:before, .nav-mobile__btn:after {
+.nav-mobile__close-btn:before, .nav-mobile__close-btn:after {
   position: absolute;
   left: 18px;
   content: ' ';
@@ -72,14 +102,16 @@ img {
   width: 2px;
   background-color: #000000;
 }
-.nav-mobile__btn:before {
+.nav-mobile__close-btn:before {
   transform: rotate(45deg);
 }
-.nav-mobile__btn:after {
+.nav-mobile__close-btn:after {
   transform: rotate(-45deg);
 }
 
+
 /*  */
+
 
 .nav-mobile__list {
   text-align: right;
@@ -92,12 +124,6 @@ img {
 .nav-mobile__link {
   color: #fff;
   text-decoration: none;
-}
-
-
-
-.logo__text {
-  display: none;
 }
 
 
