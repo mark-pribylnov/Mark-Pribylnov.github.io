@@ -19,7 +19,6 @@ function offClick() {
 }
 
 openBtn.addEventListener('click', onClick);
-
 closeBtn.addEventListener('click', offClick);
 
 for (let link of navMobileLinks) {

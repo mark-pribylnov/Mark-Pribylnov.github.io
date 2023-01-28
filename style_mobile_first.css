@@ -36,9 +36,6 @@ img {
   max-width: 100%;
 }
 
-.hide {
-  display: none;
-}
 
 .body--nav-mobile-active::before {
   content: '';
@@ -213,4 +210,69 @@ img {
   padding-bottom: 3.8em;
 }
 
+/* --- --- --- --- SECTON 2  --- --- --- --- --- */
+
+.steps__heading {
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 1.35em;
+}
+
+.steps-wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0.93em 1.25em;
+  margin-top: 1.40em;
+}
+
+.steps__item:nth-child(1) {
+  width: 27%;
+}
+
+.steps__item:nth-child(2) {
+  width: 43%;
+  margin-right: -0.65em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+}
+
+.steps__item:nth-child(3) {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.steps__text {
+  font-size: 1rem;
+  font-family: 'Aleo', serif;
+  margin-top: 1.45em;
+}
+
+.m-flex-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.m-txt-right {
+  text-align: right;
+}
+
+.m-txt-center {
+  text-align: center;
+}
+
+
+
+
+/* Must be in the end to avoid overwriting ⬇ */
+.hide {
+  display: none;
+}
+/* Must be in the end to avoid overwriting ⬆ */
 
