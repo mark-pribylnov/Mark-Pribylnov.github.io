@@ -16,7 +16,7 @@
       <header class="header">
         <div class="logo">
           <img class="logo__img" src="assets/svg/logo.svg" alt="logo">
-          <span class="logo__text hide">Travel Portal</span>
+          <span class="logo__text is-hidden">Travel Portal</span>
         </div>
         <div class="burger-btn">
           <div></div>
@@ -33,7 +33,7 @@
             <li class="nav-mobile__item"><a class="nav-mobile__link" href="#">Social Media</a></li>
           </ul>
         </nav>
-        <nav class="nav hide">
+        <nav class="nav is-hidden">
           <ul class="nav__list">
             <li class="nav__item"><a class="nav__link" href="#preview">How It Works</a></li>
             <li class="nav__item"><a class="nav__link" href="#steps">Plan Your Trip</a></li>
@@ -41,13 +41,13 @@
             <li class="nav__item"><a class="nav__link" href="#stories">Travel Stories</a></li>
           </ul>
         </nav>
-        <button class="btn btn_login hide">Login</button>
+        <button class="btn btn_login is-hidden">Login</button>
       </header>
       <main>
           <section id="preview" class="preview">
               <div class="container">
-                <h1 class="preview__title hide">Explore the beauty of <br> the World</h1>
-                <p class="preview__text hide">Receive personalized recommendations for countries, hotels, activities and more</p>
+                <h1 class="preview__title is-hidden">Explore the beauty of <br> the World</h1>
+                <p class="preview__text is-hidden">Receive personalized recommendations for countries, hotels, activities and more</p>
                 <form class="search-form">
                   <input class="search-form__placeholder" type="text" placeholder="What would you like to do?">
                   <button class="btn btn_search-form">Start Planning</button>
@@ -72,16 +72,39 @@
         </div>
       </div>
     </section>
-        <!-- <section id="destinations">
-            <h2>Popular Destinations</h2>
-            <img src="assets/img/sea.jpg" alt="sea">
-            <img src="assets/img/japan.jpg" alt="japan">
-            <img src="assets/img/bridge.jpg" alt="bridge">
-            <div class="carousel-dotes"></div>
-            <button>Find more</button>
-        </section> -->
-        <h2 class="stories__heading">Travel Stories</h2>
-        <section id="stories" class="stories">
+    <section id="destinations" class="destinations">
+      <h2 class="destinations__heading">Popular Destinations</h2>
+      <div class="carousel">
+          <ul class="carousel__slides-list">
+            <li class="carousel__slide js-current-slide">
+              <img class="carousel__img" src="assets/img/spain_mobile.jpg" alt="spain">
+            </li>
+            <li class="carousel__slide">
+              <img class="carousel__img" src="assets/img/usa_mobile.jpg" alt="usa">
+            </li>
+            <li class="carousel__slide">
+              <img class="carousel__img" src="assets/img/japan_mobile.jpg" alt="japan">
+            </li>
+          </ul>
+          <span class="carousel__country-name" >USA</span>
+          <span class="carousel__country-name" >Japan</span>
+          <span class="carousel__country-name" >Spain</span>
+        <button class="carousel__btn carousel__btn--left is-hidden">
+          <img src="assets/svg/arrow-left.svg" alt="left arrow">
+        </button>
+        <button class="carousel__btn carousel__btn--right">
+          <img src="assets/svg/arrow-right.svg" alt="right arrow">
+        </button>
+        <div class="carousel__nav">
+          <span class="carousel__dot current-dot"></span>
+          <span class="carousel__dot"></span>
+          <span class="carousel__dot"></span>
+        </div>
+      </div>
+      <!-- <button>Find more</button> -->
+    </section>
+        <!-- <h2 class="stories__heading">Travel Stories</h2> -->
+        <!-- <section id="stories" class="stories">
             <div class="container">
               <div class="stories-wrapper">
                 <article class="stories__item">
@@ -161,7 +184,7 @@
             </li>
         </ul>
       </div>
-    </footer>
+    </footer> -->
 </body>
 <script src="script.js"></script>
 </html>

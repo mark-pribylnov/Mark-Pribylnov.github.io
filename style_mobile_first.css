@@ -218,12 +218,13 @@ img {
   font-weight: 500;
   text-align: center;
   margin-top: 1.35em;
+  color: #F2785C;
 }
 
 .steps-wrapper {
   display: flex;
   justify-content: space-between;
-  padding: 0 0.93em 1.25em;
+  padding: 0 0.93em;
   margin-top: 1.40em;
 }
 
@@ -267,12 +268,131 @@ img {
   text-align: center;
 }
 
+/* --- --- --- --- SECTON 3  --- --- --- --- --- */
+
+.destinations__heading {
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  font-weight: 500;
+  text-align: center;
+  color: #F2785C;
+  margin-top: 0.65em;
+  margin-bottom: 1.45em;
+}
+
+/* Carousel */
+
+.carousel {
+  position: relative;
+  width: 92%;
+  max-width: 360px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 1em;
+}
+
+
+.carousel__slides-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  min-height: 210px;
+  transition: transform 500ms ease-in;
+}
+
+.carousel__slide {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+.carousel__img {
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+}
+
+.carousel__country-name {
+  text-transform: uppercase;
+  position: absolute;
+  font-size: 2rem;
+  top: 4%;
+  left: 4%;
+}
+
+.carousel__country-name:nth-of-type(1) {
+  display: none;
+}
+
+.carousel__country-name:nth-of-type(2) {
+  display: none
+}
+
+.carousel__country-name:nth-of-type(3) {
+  /* display: none */
+}
+
+.carousel__btn {
+  background: none;
+  border: none;
+  padding: 0;
+  position: absolute;
+  top: 43%;
+  cursor: pointer;
+}
+
+.carousel__btn:hover {
+  opacity: 0.7;
+}
+
+.carousel__btn--left {
+  left: 1%;
+}
+.carousel__btn--right {
+  right: 1%;
+}
+
+
+.carousel__nav {
+  position: absolute;
+  bottom: 3%;
+  left: 45%;
+}
+
+.carousel__dot {
+  width: 8px;
+  height: 8px;
+  border: none;
+  border-radius: 50%;
+  background-color: #F2785C;
+  display:inline-block;
+  opacity: 0.5;
+}
+
+.carousel__dot + .carousel__dot {
+  margin-left: 0.125em;
+}
+
+.carousel__dot:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.current-dot {
+  opacity: 1;
+}
+
+
+
+
+
+
+
 
 
 
 /* Must be in the end to avoid overwriting ⬇ */
-.hide {
+.is-hidden {
   display: none;
 }
-/* Must be in the end to avoid overwriting ⬆ */
 
