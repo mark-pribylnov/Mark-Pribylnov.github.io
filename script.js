@@ -90,7 +90,7 @@ const hideShowArrow = (slides, leftBtn, rightBtn, targetIndex) => {
 // Event listeners
 
 leftBtn.addEventListener('click', () => {
-  const currentSlide = slidesList.querySelector('.current-slide');
+  const currentSlide = slidesList.querySelector('.js-current-slide');
   const prevSlide = currentSlide.previousElementSibling;
   const currentDot = dotsNav.querySelector('.current-dot')
   const prevDot = currentDot.previousElementSibling
@@ -103,7 +103,7 @@ leftBtn.addEventListener('click', () => {
 
 
 rightBtn.addEventListener('click', () => {
-  const currentSlide = slidesList.querySelector('.current-slide');
+  const currentSlide = slidesList.querySelector('.js-current-slide');
   const nextSlide = currentSlide.nextElementSibling;
   const currentDot = dotsNav.querySelector('.current-dot')
   const nextDot = currentDot.nextElementSibling
@@ -120,7 +120,7 @@ dotsNav.addEventListener('click', e => {
 
   if(!targetDot) return;
 
-  const currentSlide = slidesList.querySelector('.current-slide');
+  const currentSlide = slidesList.querySelector('.js-current-slide');
   const currentDot = dotsNav.querySelector('.current-dot');
   const targetIndex = dots.findIndex(dot => dot === targetDot);
   const targetSlide = slides[targetIndex]
