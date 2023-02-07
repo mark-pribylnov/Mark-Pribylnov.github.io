@@ -382,6 +382,21 @@ img {
   opacity: 1;
 }
 
+.destinations__btn {
+  padding: 0.73em 0em;
+  font-size: 1.1rem;
+  margin: 0.88em auto 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+  font-family: 'Red Hat Text', sans-serif;
+  max-width: 24%;
+}
+
+.destinations__btn-arrow {
+  width: 11%;
+}
 
 
 
