@@ -1,5 +1,6 @@
 
-// --- --- --- Mobile menu off click --- --- ---
+
+// --- --- MOBILE MENU --- ---
 
 
 
@@ -37,7 +38,10 @@ menu.addEventListener('click', event => event.stopPropagation());
 
 
 
-// --- --- --- Carousel --- --- ---
+
+// --- --- CAROUSEL --- ---
+
+
 
 
 
@@ -57,7 +61,6 @@ const setSlidePosition = (slide, index) => {
   slide.style.left = slideWidth * index + 'px';
 };
 slides.forEach(setSlidePosition);
-console.log(slides)
 
 
 const moveToSlide = (slidesList, currentSlide, targetSlide) => {
@@ -130,3 +133,20 @@ dotsNav.addEventListener('click', e => {
   hideShowArrow(slides, leftBtn, rightBtn, targetIndex);
 });
 
+
+
+
+
+// --- --- TEXT TRUNCATER --- ---
+
+
+
+
+
+const resizedText = document.getElementsByClassName('storeis__text--trancated');
+
+if (document.body.clientWidth < 390) {
+  for (const element of resizedText) {
+    $clamp(element, {clamp: 6, useNativeClamp: true, animate: false})
+  }
+}
