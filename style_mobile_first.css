@@ -621,15 +621,61 @@ a {
 
 
 
-/* Set backgrounds for desktop at 391px in order to avoid expanding mobile backgrounds */
-@media  (min-width: 391px) {
 
+@media  (min-width: 391px) {
+/* Set backgrounds for desktop at 391px in order to avoid expanding mobile backgrounds */
   .header-bg-container {
     background-image: url('./assets/img/bg.jpg');
   }
 
   .l-bottom-bg-container {
     background-image: url('./assets/img/bottom_bg.jpg');
+  }
+
+  /* --- --- SECTION 2. Steps --- --- */
+
+  .steps-wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 6em;
+    margin-top: 1.40em;
+    color: #0D606F;
+  }
+
+  .steps__item:nth-child(1) {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .steps__item:nth-child(2) {
+    width: auto;
+    margin-right: -0.65em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25em;
+  }
+
+  .steps__item:nth-child(3) {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .steps__text {
+    font-size: 1rem;
+    font-family: 'Aleo', serif;
+    margin-top: 1.45em;
+    text-align: center;
+  }
+
+  .m-flex-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }
 

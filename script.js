@@ -160,7 +160,7 @@ if (document.body.clientWidth < 390) {
 
 
 
-// The console logs are like comments, but better
+// Enable console logs to see in console how it works
 const resizePadding = () => {
   const currentViewport = window.innerWidth;
   // console.log(`Viewport width: ${currentViewport}px`)
