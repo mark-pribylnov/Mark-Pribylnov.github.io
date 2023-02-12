@@ -15,6 +15,36 @@
 
 :root {
   font-size: 62.5%;
+
+  --ff-body: 'Aleo', serif;
+  --ff-heading-and-buttons: 'Red Hat Text', sans-serif;
+  --ff-logo: 'Magra', sans-serif;
+
+  /* Mobile font sizes */
+  --fs-mobile-menu: 1.6rem;
+  --fs-search-form-placeholder: 1.4rem;
+  --fs-sections-heading: 1.4rem;
+  --fs-buttons: 1.1rem;
+  --fs-stories-sub-heading: 1.1rem;
+  --fs-steps-text: 1rem;
+  --fs-stories-text: 0.9rem;
+
+  /* Desktop font sizes */
+  /* --fs-preview-title: 8rem; */
+  /* --fs-sections-heading: 4rem; Use media queries */
+  /* --fs-stories-heading: 3.5rem; Use media queries */
+  /* --fs-logo: 3.2rem; */
+  /* --fs-search-form-placeholder: 2.4rem; Use media queries */
+  /* --fs-buttons: 2.4rem; Use media queries */
+  /* --fs-steps-text: 2rem; Use media queries */
+  /* --fs-stories-text: 2rem; Use media queries */
+  /* --fs-preview-text: 2rem;
+  --fs-nav: 1.6rem;
+  --fs-login-button: 1.6rem;
+  --fs-copyrights: 1.6rem; */
+
+
+
 }
 
 html {
@@ -26,7 +56,7 @@ body {
   margin: 0 auto;
   max-width: 1440px;
   font-size: 1.6rem;
-  font-family: 'Red Hat Text', sans-serif;
+  font-family: var(--ff-heading-and-buttons);
   color: #ffffff;
 }
 
@@ -58,7 +88,7 @@ a {
   overflow: hidden;
   border-radius: 1rem;
   border: none;
-  font-size: 1.1rem;
+  font-size: var(--fs-buttons);
   color: #ffffff;
   background-color: #0D606F;
   transition: all .35s;
@@ -168,7 +198,7 @@ a {
 
 .destinations__btn {
   padding: 0.73em 0em;
-  font-size: 1.1rem;
+  font-size: var(--fs-buttons);
   margin: 0.88em auto 0;
   display: flex;
   justify-content: center;
@@ -187,7 +217,7 @@ a {
 
 .stories__btn {
   padding: 0.73em 0em;
-  font-size: 1.1rem;
+  font-size: var(--fs-buttons);
   margin: 0.36em auto 0;
   display: flex;
   justify-content: center;
@@ -233,6 +263,7 @@ a {
   box-shadow: 0px 4px 3px rgba(13, 96, 111, 0.25);
   transform: translateX(100%);
   transition: transform 0.2s;
+  font-size: var(--fs-mobile-menu);
 }
 
 .nav-mobile--open {
@@ -265,7 +296,7 @@ a {
 }
 
 .logo__text {
-  font-family: 'Magra', sans-serif;
+  font-family: var(--ff-logo);
   font-size: 3.2rem;
 }
 
@@ -319,7 +350,7 @@ a {
   border: none;
   width: 65%;
   color: #F2785C;
-  font-size: 1.4rem;
+  font-size: var(--fs-search-form-placeholder);
   font-style: italic;
 }
 
@@ -368,7 +399,7 @@ a {
 
 .steps__heading {
   text-transform: uppercase;
-  font-size: 1.4rem;
+  font-size: var(--fs-sections-heading);
   font-weight: 500;
   text-align: center;
   margin-top: 1.35em;
@@ -404,8 +435,8 @@ a {
 }
 
 .steps__text {
-  font-size: 1rem;
-  font-family: 'Aleo', serif;
+  font-size: var(--fs-steps-text);
+  font-family: var(--ff-body);
   margin-top: 1.45em;
 }
 
@@ -435,7 +466,7 @@ a {
 
 .destinations__heading {
   text-transform: uppercase;
-  font-size: 1.4rem;
+  font-size: var(--fs-sections-heading);
   font-weight: 500;
   text-align: center;
   color: #F2785C;
@@ -547,7 +578,7 @@ a {
 
 .stories__heading {
   text-transform: uppercase;
-  font-size: 1.4rem;
+  font-size: var(--fs-sections-heading);
   font-weight: 500;
   text-align: center;
   color: #F2785C;
@@ -559,7 +590,7 @@ a {
   display: flex;
   justify-content: center;
   padding: 0.1em 0 0 0.95em;
-  font-family: 'Aleo', serif;
+  font-family: var(--ff-body);
   color: #0D606F;
 }
 
@@ -579,11 +610,11 @@ a {
 }
 
 .stories__text-wrapper {
-  font-size: 0.9rem;
+  font-size: var(--fs-stories-text);
 }
 
 .stories__sub-heading {
-  font-size: 1.1rem;
+  font-size: var(--fs-stories-sub-heading);
 }
 
 .stories__link {
@@ -633,7 +664,8 @@ a {
   }
 
   /* --- --- SECTION 2. Steps --- --- */
-
+  /* Fix this section after responsive typography */
+/*
   .steps-wrapper {
     display: flex;
     justify-content: space-between;
@@ -667,7 +699,6 @@ a {
 
   .steps__text {
     font-size: 1rem;
-    font-family: 'Aleo', serif;
     margin-top: 1.45em;
     text-align: center;
   }
@@ -676,7 +707,7 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
+  } */
 }
 
 
