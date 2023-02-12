@@ -28,7 +28,6 @@ body {
   font-size: 1.6rem;
   font-family: 'Red Hat Text', sans-serif;
   color: #ffffff;
-  overflow-x: hidden;
 }
 
 *, *::before, *::after {
@@ -213,6 +212,12 @@ a {
 
 /* Mobile menu */
 
+
+.header-bg-container {
+  overflow: hidden;
+  position: relative;
+}  /* Hides mobile menu */
+
 .nav-mobile {
   position: absolute;
   right: 0;
@@ -228,7 +233,6 @@ a {
   box-shadow: 0px 4px 3px rgba(13, 96, 111, 0.25);
   transform: translateX(100%);
   transition: transform 0.2s;
-  z-index: 1;
 }
 
 .nav-mobile--open {
@@ -250,8 +254,9 @@ a {
 
 
 
-/* Desktop menu */
+/* Desktop menu (except header)*/
 
+/* These header styles used for mobile viewport. To make a desktop header, tyles defined within media queries are applied." */
 .header {
   display: flex;
   justify-content: space-between;
@@ -616,8 +621,27 @@ a {
 
 
 
+/* Set backgrounds for desktop at 391px in order to avoid expanding mobile backgrounds */
+@media  (min-width: 391px) {
 
-@media (min-width: 391px) {
+  .header-bg-container {
+    background-image: url('./assets/img/bg.jpg');
+  }
+
+  .l-bottom-bg-container {
+    background-image: url('./assets/img/bottom_bg.jpg');
+  }
+}
+
+
+/* Change width when you get to this point */
+@media screen and (min-width: 1500px) {
+  /* JS function "resizePadding" makes header responsive */
+  .header {
+    padding: 1.17em 7.5em 1.17em 7.6em;
+    background: rgba(242, 120, 92, 0.7);
+    box-shadow: 0 0.25em 0.25em 0 rgba(13, 96, 111, 0.5);
+  }
   .burger-btn {
     display: none;
   }
@@ -637,24 +661,7 @@ a {
   .btn_login {
     display: block;
   }
-
-
-  .header-bg-container {
-    background-image: url('./assets/img/bg.jpg');
-  }
-
-  .header {
-    padding: 1.17em 7.5em 1.17em 7.6em;
-    background: rgba(242, 120, 92, 0.7);
-    box-shadow: 0 0.25em 0.25em 0 rgba(13, 96, 111, 0.5);
-  }
-
-  .l-bottom-bg-container {
-    background-image: url('./assets/img/bottom_bg.jpg');
-  }
 }
-
-
 
 
 

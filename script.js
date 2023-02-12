@@ -150,3 +150,47 @@ if (document.body.clientWidth < 390) {
     $clamp(element, {clamp: 6, useNativeClamp: true, animate: false})
   }
 }
+
+
+
+
+
+// --- --- RESPONSIVE PADDING for header --- ---
+
+
+
+
+// The console logs are like comments, but better
+const resizePadding = () => {
+  const currentViewport = window.innerWidth;
+  // console.log(`Viewport width: ${currentViewport}px`)
+
+  const onePxToVw = Math.round((100 / currentViewport) * 100) / 100;
+  // console.log(`1px = ${onePxToVw}vw`)
+
+  const header = document.querySelector('.header')
+  const startViewport = 1440;
+  const finishViewport = 920;
+  const currentInlinePadding = getComputedStyle(header).paddingInline;
+  // console.log(`Current inline padding: ${currentInlinePadding}`);
+
+  const maxInlinePadding = 120;
+  const targetInlinePadding = 15;
+  const pixelsFromStart = startViewport - currentViewport;
+  // console.log(`Pixels from start: ${pixelsFromStart}px`)
+
+  const step = Math.round(((startViewport - finishViewport) / (maxInlinePadding - targetInlinePadding)) * 100) / 100;
+  // console.log(`Step: ${step}px\nHow much viewport have to shrink to cut 1px off the padding`);
+
+  const pixelsToCut = Math.round((pixelsFromStart / step) * 100) / 100;
+  // console.log(`${pixelsToCut} pixels to cut from padding`)
+
+  header.style.paddingLeft = maxInlinePadding - pixelsToCut + 'px'
+  header.style.paddingRight = maxInlinePadding - pixelsToCut + 'px'
+}
+
+// Enable when you get to this point
+// resizePadding()
+
+// Turn on if you want to play with window size to see how it works
+// window.addEventListener('resize', resizePadding)
