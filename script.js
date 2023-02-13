@@ -155,41 +155,98 @@ if (document.body.clientWidth < 390) {
 
 
 
+
+
+
+// --- --- RESPONSIVE FONT for stories' text --- ---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// DON'T DELETE --- DON'T DELETE --- DON'T DELETE
+
+
+
+
 // --- --- RESPONSIVE PADDING for header --- ---
+// (replaced by CSS calc() function. I left calculations to know where the values come from)
 
 
 
 
 // Enable console logs to see in console how it works
-const resizePadding = () => {
-  const currentViewport = window.innerWidth;
-  // console.log(`Viewport width: ${currentViewport}px`)
+// const resizePadding = () => {
+//   const currentViewport = window.innerWidth;
+//   console.log(`Viewport width: ${currentViewport}px`)
 
-  const onePxToVw = Math.round((100 / currentViewport) * 100) / 100;
-  // console.log(`1px = ${onePxToVw}vw`)
+//   const onePxToVw = Math.round((100 / currentViewport) * 100) / 100;
+//   console.log(`1px = ${onePxToVw}vw`)
 
-  const header = document.querySelector('.header')
-  const startViewport = 1440;
-  const finishViewport = 920;
-  const currentInlinePadding = getComputedStyle(header).paddingInline;
-  // console.log(`Current inline padding: ${currentInlinePadding}`);
+//   const header = document.querySelector('.header')
+//   const startViewport = 1440;
+//   const finishViewport = 920;
+//   const currentInlinePadding = getComputedStyle(header).paddingInline;
+//   console.log(`Current inline padding: ${currentInlinePadding}`);
 
-  const maxInlinePadding = 120;
-  const targetInlinePadding = 15;
-  const pixelsFromStart = startViewport - currentViewport;
-  // console.log(`Pixels from start: ${pixelsFromStart}px`)
+//   const maxInlinePadding = 120;
+//   const targetInlinePadding = 15;
+//   const pixelsFromStart = startViewport - currentViewport;
+//   console.log(`Pixels from start: ${pixelsFromStart}px`)
 
-  const step = Math.round(((startViewport - finishViewport) / (maxInlinePadding - targetInlinePadding)) * 100) / 100;
-  // console.log(`Step: ${step}px\nHow much viewport have to shrink to cut 1px off the padding`);
+//   const step = Math.round(((startViewport - finishViewport) / (maxInlinePadding - targetInlinePadding)) * 100) / 100;
+//   console.log(`Step: ${step}px\nHow much viewport have to shrink to cut 1px off the padding`);
 
-  const pixelsToCut = Math.round((pixelsFromStart / step) * 100) / 100;
-  // console.log(`${pixelsToCut} pixels to cut from padding`)
+//   const pixelsToCut = Math.round((pixelsFromStart / step) * 100) / 100;
+//   console.log(`${pixelsToCut} pixels to cut from padding`)
 
-  header.style.paddingLeft = maxInlinePadding - pixelsToCut + 'px'
-  header.style.paddingRight = maxInlinePadding - pixelsToCut + 'px'
-}
+//   header.style.paddingLeft = maxInlinePadding - pixelsToCut + 'px'
+//   header.style.paddingRight = maxInlinePadding - pixelsToCut + 'px'
 
-// Enable when you get to this point
+
+// Turning JS into CSS calculation
+// Variable 'pixelsFromStart'
+// (1440px - 100vw)
+
+// Variable 'step'
+// (calc(1440px - 910px) / calc(120px - 15px))
+
+// Variable 'pixelsToCut'
+// ((1440px - 100vw) / ((1440px - 910px) / (120px - 15px)))
+
+// Padding
+// calc(120px - ((1440px - 100vw) / ((1440px - 910px) / (120px - 15px))))
+
+
+
+
+// Enable to make responsive padding of desktop header
 // resizePadding()
 
 // Turn on if you want to play with window size to see how it works

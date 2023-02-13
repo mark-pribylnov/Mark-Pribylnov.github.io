@@ -712,12 +712,13 @@ a {
 
 
 /* Change width when you get to this point */
-@media screen and (min-width: 1500px) {
-  /* JS function "resizePadding" makes header responsive */
+@media screen and (min-width: 500px) {
   .header {
-    padding: 1.17em 7.5em 1.17em 7.6em;
     background: rgba(242, 120, 92, 0.7);
     box-shadow: 0 0.25em 0.25em 0 rgba(13, 96, 111, 0.5);
+    padding: 1.17em 7.5em 1.17em 7.6em;
+    padding-inline: calc(120px - calc(calc(1440px - 100vw) / calc(calc(1440 - 910) / calc(120 - 15)))); /* Responsive padding*/
+    /* DON'T delete px on the left side and DON'T add units to the right side. Otherwise, the function not working */
   }
   .burger-btn {
     display: none;
