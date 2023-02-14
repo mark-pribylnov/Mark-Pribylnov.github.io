@@ -21,23 +21,22 @@
   --ff-logo: 'Magra', sans-serif;
 
   /* Mobile font sizes */
+  /* The same logic is used as for responsive padding's calc() function */
+  /* Here's the explanation:
+  clamp(1rem [min fs], calc(2rem [max fs] - calc(calc(1440px [max viewport] - 100vw [current viewport]) / calc(calc(1440 [max viewport] - 390 [min viewport]) / calc(20[max fs in px] - 10[min fs in px])))), 2rem [max fs])
+  */
   --fs-mobile-menu: 1.6rem;
-  --fs-search-form-placeholder: 1.4rem;
-  --fs-sections-heading: 1.4rem;
-  --fs-buttons: 1.1rem;
-  --fs-stories-sub-heading: 1.1rem;
-  --fs-steps-text: 1rem;
-  --fs-stories-text: 0.9rem;
+  --fs-search-form-placeholder: clamp(1.4rem, calc(2.4rem - calc(calc(1440px - 100vw) / calc(calc(1440 - 390) / calc(24 - 14)))), 2.4rem);
+  --fs-sections-heading: clamp(1.4rem, calc(4rem - calc(calc(1440px - 100vw) / calc(calc(1440 - 390) / calc(40 - 14)))), 4rem);
+  --fs-buttons: clamp(1.1rem, calc(2.4rem - calc(calc(1440px - 100vw) / calc(calc(1440 - 390) / calc(24 - 11)))), 2.4rem);
+  --fs-stories-sub-heading: clamp(1.1rem, calc(3.5rem - calc(calc(1440px - 100vw) / calc(calc(1440 - 390) / calc(35 - 11)))), 3.5rem);
+  --fs-steps-text: clamp(1rem, calc(2rem - calc(calc(1440px - 100vw) / calc(calc(1440 - 390) / calc(20 - 10)))), 2rem);
+  --fs-stories-text: clamp(0.9rem, calc(2rem - calc(calc(1440px - 100vw) / calc(calc(1440 - 390) / calc(20 - 9)))), 2rem);
+
 
   /* Desktop font sizes */
   /* --fs-preview-title: 8rem; */
-  /* --fs-sections-heading: 4rem; Use media queries */
-  /* --fs-stories-heading: 3.5rem; Use media queries */
   /* --fs-logo: 3.2rem; */
-  /* --fs-search-form-placeholder: 2.4rem; Use media queries */
-  /* --fs-buttons: 2.4rem; Use media queries */
-  /* --fs-steps-text: 2rem; Use media queries */
-  /* --fs-stories-text: 2rem; Use media queries */
   /* --fs-preview-text: 2rem;
   --fs-nav: 1.6rem;
   --fs-login-button: 1.6rem;
@@ -618,7 +617,7 @@ a {
 }
 
 .stories__link {
-  font-size: 0.9rem;
+  font-size: var(--fs-stories-text);
   text-decoration: underline;
   font-weight: bold;
 }

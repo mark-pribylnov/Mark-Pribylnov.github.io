@@ -158,14 +158,6 @@ if (document.body.clientWidth < 390) {
 
 
 
-// --- --- RESPONSIVE FONT for stories' text --- ---
-
-
-
-
-
-
-
 
 
 
