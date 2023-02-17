@@ -15,6 +15,7 @@
 
 :root {
   font-size: 62.5%;
+  /* Equal to 10px and scalable */
 
   --ff-body: 'Aleo', serif;
   --ff-heading-and-buttons: 'Red Hat Text', sans-serif;
@@ -22,9 +23,11 @@
 
   /* Mobile font sizes */
   /* The same logic is used as for responsive padding's calc() function */
+
   /* Here's the explanation:
   clamp(1rem [min fs], calc(2rem [max fs] - calc(calc(1440px [max viewport] - 100vw [current viewport]) / calc(calc(1440 [max viewport] - 390 [min viewport]) / calc(20[max fs in px] - 10[min fs in px])))), 2rem [max fs])
   */
+
   --fs-mobile-menu: 1.6rem;
   --fs-search-form-placeholder: clamp(1.4rem, calc(2.4rem - calc(calc(1440px - 100vw) / calc(calc(1440 - 390) / calc(24 - 14)))), 2.4rem);
   --fs-sections-heading: clamp(1.4rem, calc(4rem - calc(calc(1440px - 100vw) / calc(calc(1440 - 390) / calc(40 - 14)))), 4rem);
@@ -309,7 +312,7 @@ a {
 }
 
 .nav__item + .nav__item {
-  margin-left: 2.5em;
+  margin-left: clamp(2rem, calc(4rem - calc(calc(1440px - 100vw) / calc(calc(1440 - 860) / calc(40 - 20)))), 4rem)
 }
 
 .nav__link {
@@ -408,7 +411,7 @@ a {
 .steps-wrapper {
   display: flex;
   justify-content: space-between;
-  padding: 0 0.93em;
+  padding-inline: clamp(15px, calc(132px - calc(calc(1440px - 100vw) / calc(calc(1440 - 390) / calc(132 - 15)))), 132px);
   margin-top: 1.40em;
   color: #0D606F;
 }
@@ -421,8 +424,9 @@ a {
   width: 43%;
   margin-right: -0.65em;
   display: flex;
-  flex-direction: column;
   gap: 0.25em;
+  flex-direction: column;
+  align-items: center;
 }
 
 .steps__item:nth-child(3) {
@@ -431,26 +435,21 @@ a {
   flex-direction: column;
   align-items: flex-end;
   justify-content: space-between;
+  text-align: right;
+}
+
+.steps__img {
+  width: clamp(70px, calc(100px - calc(calc(1440px - 100vw) / calc(calc(1440 - 390) / calc(100 - 70)))), 100px);
+}
+
+.steps__img--desktop {
+  display: none;
 }
 
 .steps__text {
   font-size: var(--fs-steps-text);
   font-family: var(--ff-body);
   margin-top: 1.45em;
-}
-
-.m-flex-center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.m-txt-right {
-  text-align: right;
-}
-
-.m-txt-center {
-  text-align: center;
 }
 
 
@@ -591,6 +590,7 @@ a {
   padding: 0.1em 0 0 0.95em;
   font-family: var(--ff-body);
   color: #0D606F;
+  padding-inline: clamp(1px, calc(120px - calc(calc(1440px - 100vw) / calc(calc(1440 - 390) / calc(120 - 1)))), 120px);
 }
 
 .l-stories__img-wrapper {
@@ -605,7 +605,7 @@ a {
 
 .l-stories__description {
   max-width: 50%;
-  margin-right: 1.4em;
+  /* margin-right: 1.4em; */
 }
 
 .stories__text-wrapper {
@@ -662,63 +662,24 @@ a {
     background-image: url('./assets/img/bottom_bg.jpg');
   }
 
-  /* --- --- SECTION 2. Steps --- --- */
-  /* Fix this section after responsive typography */
-/*
-  .steps-wrapper {
-    display: flex;
-    justify-content: space-between;
-    padding: 0 6em;
-    margin-top: 1.40em;
-    color: #0D606F;
-  }
-
-  .steps__item:nth-child(1) {
-    width: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .steps__item:nth-child(2) {
-    width: auto;
-    margin-right: -0.65em;
-    display: flex;
-    flex-direction: column;
-    gap: 0.25em;
-  }
-
-  .steps__item:nth-child(3) {
-    width: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .steps__text {
-    font-size: 1rem;
-    margin-top: 1.45em;
-    text-align: center;
-  }
-
-  .m-flex-center {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  } */
 }
 
 
 /* Change width when you get to this point */
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 860px) {
+
+
+/* --- --- SECTION 1. Preview --- --- */
+
+
   .header {
     background: rgba(242, 120, 92, 0.7);
     box-shadow: 0 0.25em 0.25em 0 rgba(13, 96, 111, 0.5);
     padding: 1.17em 7.5em 1.17em 7.6em;
-    padding-inline: calc(120px - calc(calc(1440px - 100vw) / calc(calc(1440 - 910) / calc(120 - 15)))); /* Responsive padding*/
+    padding-inline: clamp(15px, calc(120px - calc(calc(1440px - 100vw) / calc(calc(1440 - 910) / calc(120 - 15)))), 120px); /* Responsive padding*/
     /* DON'T delete px on the left side and DON'T add units to the right side. Otherwise, the function not working */
   }
+
   .burger-btn {
     display: none;
   }
@@ -737,6 +698,51 @@ a {
 
   .btn_login {
     display: block;
+  }
+
+
+/* --- --- SECTION 2. Steps --- --- */
+
+
+  .steps-wrapper {
+    margin-top: 2.5em;
+  }
+
+  .steps__text {
+    margin-top: 1.25em;
+  }
+
+  .steps__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .steps__item:nth-child(1) {
+    margin-left: -2.3em;
+  }
+
+  .steps__item:nth-child(2) {
+    margin-right: -3.4em;
+  }
+
+  .steps__item:nth-child(3) {
+    align-items: center;
+    margin-right: -1.1em;
+    text-align: center;
+  }
+
+  .steps__img {
+    display: block;
+  }
+
+  .steps__img--mobile {
+    display: none;
+  }
+
+  .steps__img--desktop {
+    display: inline;
   }
 }
 
