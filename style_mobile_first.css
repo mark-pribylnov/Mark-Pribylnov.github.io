@@ -38,12 +38,12 @@
 
 
   /* Desktop font sizes */
-  /* --fs-preview-title: 8rem; */
-  /* --fs-logo: 3.2rem; */
-  /* --fs-preview-text: 2rem;
+  --fs-preview-title: clamp(4rem, calc(8rem - calc(calc(1440px - 100vw) / calc(calc(1440 - 860) / calc(80 - 40)))), 8rem);
+  --fs-logo: 3.2rem;
+  --fs-preview-text: 2rem;
   --fs-nav: 1.6rem;
   --fs-login-button: 1.6rem;
-  --fs-copyrights: 1.6rem; */
+  --fs-copyrights: 1.6rem;
 
 
 
@@ -72,6 +72,10 @@ img {
 
 a {
   text-decoration: none;
+}
+
+h1 {
+  margin: 0;
 }
 
 
@@ -167,9 +171,10 @@ a {
 /* Search form button */
 
 .btn_search-form {
-  padding: 0.75em 1em;
+  padding: 0.75em 0.85em;
   margin-right: -0.45em;
   box-shadow: 0 0 0.3rem rgba(13, 96, 111, 0.08);
+  font-family: var(--ff-heading-and-buttons);
 }
 
 
@@ -193,6 +198,11 @@ a {
 }
 .carousel__btn--right {
   right: 1%;
+}
+
+
+@media screen and (min-width: 860px) {
+  
 }
 
 
@@ -342,16 +352,26 @@ a {
   align-items: center;
   background: rgba(255, 255, 255, 0.7);
   border-radius: 1em;
-  padding: 0.60em 0.85em;
-  width: 92%;
-  margin: 3.85em auto 0;;
+  padding: 0.53em 0.85em;
+  margin: 3.9em auto 0;
+  width: clamp(360px, calc(892px - calc(calc(1440px - 100vw) / calc(calc(1440 - 390) / calc(892 - 360)))), 892px);
 }
+
+/* Prevent overflowing at 320 - 390px */
+@media screen and (max-width: 390px) {
+  .search-form {
+    width: 92%;
+  }
+}
+
+
 
 .search-form__placeholder {
   background: none;
   border: none;
   width: 65%;
   color: #F2785C;
+  font-family: var(--ff-body);
   font-size: var(--fs-search-form-placeholder);
   font-style: italic;
 }
@@ -385,10 +405,31 @@ a {
   background-size: cover;
 }
 
+.preview-container {
+  padding-inline: clamp(15px, calc(120px - calc(calc(1440px - 100vw) / calc(calc(1440 - 910) / calc(120 - 15)))), 120px);
+}
+
 .preview {
   padding-bottom: 3.8em;
 }
 
+.preview__title {
+  font-size: var(--fs-preview-title);
+  padding-inline: clamp(15px, calc(120px - calc(calc(1440px - 100vw) / calc(calc(1440 - 910) / calc(120 - 15)))), 120px);
+  font-family: var(--ff-body);
+  margin-top: 0.38em;
+  display: none;
+}
+
+.preview__text {
+  font-size: var(--fs-preview-text);
+  margin-top: 1.6em;
+  padding-inline: clamp(15px, calc(120px - calc(calc(1440px - 100vw) / calc(calc(1440 - 910) / calc(120 - 15)))), 120px);
+  font-family: var(--ff-body);
+  font-style: italic;
+  font-weight: bold;
+  display: none;
+}
 
 
 
@@ -652,7 +693,7 @@ a {
 
 
 
-@media  (min-width: 391px) {
+@media screen and (min-width: 391px) {
 /* Set backgrounds for desktop at 391px in order to avoid expanding mobile backgrounds */
   .header-bg-container {
     background-image: url('./assets/img/bg.jpg');
@@ -671,12 +712,15 @@ a {
 
 /* --- --- SECTION 1. Preview --- --- */
 
+  .preview {
+    padding-bottom: clamp(60px, calc(255px - calc(calc(1440px - 100vw) / calc(calc(1440 - 860) / calc(255 - 60)))), 255px);
+  }
 
   .header {
     background: rgba(242, 120, 92, 0.7);
     box-shadow: 0 0.25em 0.25em 0 rgba(13, 96, 111, 0.5);
     padding: 1.17em 7.5em 1.17em 7.6em;
-    padding-inline: clamp(15px, calc(120px - calc(calc(1440px - 100vw) / calc(calc(1440 - 910) / calc(120 - 15)))), 120px); /* Responsive padding*/
+    padding-inline: clamp(15px, calc(120px - calc(calc(1440px - 100vw) / calc(calc(1440 - 860) / calc(120 - 15)))), 120px); /* Responsive padding*/
     /* DON'T delete px on the left side and DON'T add units to the right side. Otherwise, the function not working */
   }
 
@@ -700,6 +744,31 @@ a {
     display: block;
   }
 
+  .preview__title {
+    display: block;
+  }
+
+  .preview__text {
+    display: block;
+  }
+
+  .search-form {
+    padding-block: 1.1em;
+    margin-top: 2.95em;
+    margin-left: 7.5em;
+    padding-left: 2.4em;
+    padding-right: 1.8em;
+  }
+
+
+  .btn_search-form {
+    padding: 0.55em 1.4em;
+    margin-right: -0.45em;
+    margin-top: 0;
+  }
+
+
+
 
 /* --- --- SECTION 2. Steps --- --- */
 
@@ -708,6 +777,9 @@ a {
     margin-top: 2.5em;
   }
 
+  .steps__heading {
+    margin-top: 2.05em;
+  }
   .steps__text {
     margin-top: 1.25em;
   }
@@ -744,11 +816,17 @@ a {
   .steps__img--desktop {
     display: inline;
   }
+
+
+  /* --- --- SECTION 3. Destinations --- --- */
+
+
+
+  .destinations__heading {
+    margin-top: 1.95em;
+  }
+
 }
-
-
-
-
 
 
 
