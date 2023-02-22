@@ -201,11 +201,6 @@ h1 {
 }
 
 
-@media screen and (min-width: 860px) {
-  
-}
-
-
 /* Destinations section buttons */
 
 .destinations__btn {
@@ -545,19 +540,25 @@ h1 {
   object-fit: cover;
 }
 
-.carousel__country-name {
-  text-transform: uppercase;
-  position: absolute;
-  font-size: 2rem;
-  top: 4%;
-  left: 4%;
+.carousel__img--desktop {
+  display: none;
 }
 
-
 .carousel__nav {
+
+}
+
+.carousel__nav--mobile {
   position: absolute;
   bottom: 3%;
   left: 45%;
+}
+
+.carousel__nav--desktop {
+  display: none;
+  margin-top: 1.5em;
+  justify-content: center;
+  gap: 10px;
 }
 
 .carousel__dot {
@@ -584,6 +585,77 @@ h1 {
 }
 
 
+@media screen and (min-width: 860px) {
+  .carousel__img--desktop {
+    display: inline;
+    border-radius: 16px;
+  }
+  .carousel__img--mobile {
+    display: none;
+  }
+
+  .carousel {
+    max-width: 1440px;
+    width: 100%;
+    border-radius: 0;
+  }
+
+  .carousel__slides-list {
+    /* min-height: 800px; */
+    min-height: clamp(210px, calc(800px - calc(calc(1440px - 100vw) / calc(calc(1440 - 390) / calc(800 - 210)))), 800px);
+  }
+
+  .carousel__btn {
+    display: none;
+  }
+
+
+/*
+  .carousel {
+    position: relative;
+    width: 92%;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 1em;
+  }
+
+
+  .carousel__slides-list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    min-height: 210px;
+    transition: transform 500ms ease-in;
+  }
+
+  .carousel__slide {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+  }
+
+  .carousel__img {
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+  }
+  } */
+
+
+.carousel__nav--desktop {
+  display: flex;
+}
+
+.carousel__nav--mobile {
+  display: none;
+}
+
+.carousel__dot {
+  width: 20px;
+  height: 20px;
+  margin-left: 0;
+}
+}
 
 
 
@@ -824,6 +896,7 @@ h1 {
 
   .destinations__heading {
     margin-top: 1.95em;
+    margin-bottom: 1.11em;
   }
 
 }

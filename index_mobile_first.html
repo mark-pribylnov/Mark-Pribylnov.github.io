@@ -87,13 +87,16 @@
       <div class="carousel">
           <ul class="carousel__slides-list">
             <li class="carousel__slide js-current-slide">
-              <img class="carousel__img" src="assets/img/spain_mobile.jpg" alt="spain">
+              <img class="carousel__img carousel__img--mobile" src="assets/img/spain_mobile.jpg" alt="spain">
+              <img class="carousel__img carousel__img--desktop" src="assets/img/spain_desktop.jpg" alt="spain">
             </li>
             <li class="carousel__slide">
-              <img class="carousel__img" src="assets/img/usa_mobile.jpg" alt="usa">
+              <img class="carousel__img carousel__img--mobile" src="assets/img/usa_mobile.jpg" alt="usa">
+              <img class="carousel__img carousel__img--desktop" src="assets/img/usa_desktop.jpg" alt="usa">
             </li>
             <li class="carousel__slide">
-              <img class="carousel__img" src="assets/img/japan_mobile.jpg" alt="japan">
+              <img class="carousel__img carousel__img--mobile" src="assets/img/japan_mobile.jpg" alt="japan">
+              <img class="carousel__img carousel__img--desktop" src="assets/img/japan_desktop.jpg" alt="japan">
             </li>
           </ul>
         <button class="carousel__btn carousel__btn--left is-hidden">
@@ -102,13 +105,18 @@
         <button class="carousel__btn carousel__btn--right">
           <img src="assets/svg/arrow-right.svg" alt="right arrow">
         </button>
-        <div class="carousel__nav">
+        <div class="carousel__nav carousel__nav--mobile">
           <span class="carousel__dot current-dot"></span>
           <span class="carousel__dot"></span>
           <span class="carousel__dot"></span>
         </div>
       </div>
-      <button class="destinations__btn btn">
+      <div class="carousel__nav carousel__nav--desktop">
+        <span class="carousel__dot current-dot"></span>
+        <span class="carousel__dot"></span>
+        <span class="carousel__dot"></span>
+      </div>
+      <button class="destinations__btn btn is-hidden">
         <img class="destinations__btn-arrow" src="assets/svg/arrow.svg" alt="arrow">
         <span class="destinations__btn-text">Find More</span>
       </button>

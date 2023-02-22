@@ -44,7 +44,6 @@ menu.addEventListener('click', event => event.stopPropagation());
 
 
 
-
 const slidesList = document.querySelector('.carousel__slides-list');
 const slides = Array.from(slidesList.children);
 const leftBtn = document.querySelector('.carousel__btn--left');
@@ -57,11 +56,46 @@ const slideWidth = slides[0].getBoundingClientRect().width;
 
 // Functions
 
-const setSlidePosition = (slide, index) => {
+// In the end delete "Mobile" word and make one function form different screen sizes
+const setSlidePositionMobile = (slide, index) => {
   slide.style.left = slideWidth * index + 'px';
 };
-slides.forEach(setSlidePosition);
+// slides.forEach(setSlidePositionMobile);
 
+// document.querySelector('.carousel').style.border = '5px solid green';
+
+const setSlidePositionDesktop = (slide, index) => {
+  const carouselWidth = parseInt(getComputedStyle(slidesList).width, 10);
+  console.log(carouselWidth);
+  const emptyWidth = carouselWidth - slideWidth
+  console.log(emptyWidth);
+  slide.style.left = emptyWidth / 2 + 'px';
+  // slide.style.right = emptyWidth / 2 + 'px';
+
+  const spaceBetweenSlides = 60;
+  slides[0].style.left = -slideWidth + emptyWidth / 2 - spaceBetweenSlides + 'px';
+  slides[1].style.left = slideWidth + emptyWidth / 2 + spaceBetweenSlides + 'px';
+  // slides[1].style.left = slideWidth + 60 + 'px';
+  // slides[2].style.left = slideWidth * 2 + 60 * 2 + 'px';
+  // console.log(slides[2]);
+  // slide.style.left = 25 + '%';
+};
+slides.forEach(setSlidePositionDesktop);
+
+// const setSlidePositionDesktop = () => {
+//   const currentSlide = slidesList.querySelector('.js-current-slide');
+//   const firstSlide = slides[0];
+//   const lastSlide = slides[slides.length - 1];
+//   const firstSlideClone = firstSlide.cloneNode(true);
+//   const lastSlideClone = lastSlide.cloneNode(true);
+//   const nextSlide = currentSlide.nextElementSibling;
+//   const prevSlide = currentSlide.previousElementSibling;
+
+//   slidesList.appendChild(firstSlideClone);
+//   slidesList.insertBefore(lastSlideClone, firstSlide)
+// };
+
+//  setSlidePositionDesktop();
 
 const moveToSlide = (slidesList, currentSlide, targetSlide) => {
   slidesList.style.transform = 'translateX(-' + targetSlide.style.left + ')';
