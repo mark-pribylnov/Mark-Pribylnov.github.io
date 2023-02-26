@@ -39,7 +39,8 @@ menu.addEventListener('click', event => event.stopPropagation());
 
 
 
-// --- --- CAROUSEL --- ---
+// --- --- CAROUSEL MOBILE--- ---
+
 
 
 
@@ -56,46 +57,11 @@ const slideWidth = slides[0].getBoundingClientRect().width;
 
 // Functions
 
-// In the end delete "Mobile" word and make one function form different screen sizes
-const setSlidePositionMobile = (slide, index) => {
+const setSlidePosition = (slide, index) => {
   slide.style.left = slideWidth * index + 'px';
 };
-// slides.forEach(setSlidePositionMobile);
+slides.forEach(setSlidePosition);
 
-// document.querySelector('.carousel').style.border = '5px solid green';
-
-const setSlidePositionDesktop = (slide, index) => {
-  const carouselWidth = parseInt(getComputedStyle(slidesList).width, 10);
-  console.log(carouselWidth);
-  const emptyWidth = carouselWidth - slideWidth
-  console.log(emptyWidth);
-  slide.style.left = emptyWidth / 2 + 'px';
-  // slide.style.right = emptyWidth / 2 + 'px';
-
-  const spaceBetweenSlides = 60;
-  slides[0].style.left = -slideWidth + emptyWidth / 2 - spaceBetweenSlides + 'px';
-  slides[1].style.left = slideWidth + emptyWidth / 2 + spaceBetweenSlides + 'px';
-  // slides[1].style.left = slideWidth + 60 + 'px';
-  // slides[2].style.left = slideWidth * 2 + 60 * 2 + 'px';
-  // console.log(slides[2]);
-  // slide.style.left = 25 + '%';
-};
-slides.forEach(setSlidePositionDesktop);
-
-// const setSlidePositionDesktop = () => {
-//   const currentSlide = slidesList.querySelector('.js-current-slide');
-//   const firstSlide = slides[0];
-//   const lastSlide = slides[slides.length - 1];
-//   const firstSlideClone = firstSlide.cloneNode(true);
-//   const lastSlideClone = lastSlide.cloneNode(true);
-//   const nextSlide = currentSlide.nextElementSibling;
-//   const prevSlide = currentSlide.previousElementSibling;
-
-//   slidesList.appendChild(firstSlideClone);
-//   slidesList.insertBefore(lastSlideClone, firstSlide)
-// };
-
-//  setSlidePositionDesktop();
 
 const moveToSlide = (slidesList, currentSlide, targetSlide) => {
   slidesList.style.transform = 'translateX(-' + targetSlide.style.left + ')';
@@ -185,6 +151,161 @@ if (document.body.clientWidth < 390) {
   }
 }
 
+
+
+
+
+
+
+// --- --- CAROUSEL DESKTOP--- ---
+
+
+
+
+
+
+
+
+
+
+
+// Functions
+
+const swapSlides = () => {
+  const swapedElement = slides.splice(0, 1)[0];
+  // At index 2 delete 0 elements and insert swapedElement
+  slides.splice(2, 0, swapedElement);
+}
+// Make the first slide the last
+swapSlides();
+
+const swapping2 = () => {
+  const el = document.getElementsByClassName('carousel__slide')[0];
+  console.log(el)
+}
+// swapping2();
+
+const setSlidePositionDesktop = () => {
+  const carouselWidth = parseInt(getComputedStyle(slidesList).width, 10);
+  const emptyWidth = carouselWidth - slideWidth
+  const spaceBetweenSlides = 60;
+
+  // Last slide moves to the left
+  slides[slides.length - 1].style.left = -slideWidth + emptyWidth / 2 - spaceBetweenSlides + 'px';
+  // First slide in the middle
+  slides[0].style.left = emptyWidth / 2 + 'px';
+  // Second slide on the right
+  slides[1].style.left = slideWidth + emptyWidth / 2 + spaceBetweenSlides + 'px';
+};
+setSlidePositionDesktop();
+
+
+const newCurrentSlideDesktop = () => {
+  // Spain isn't current slide anymore
+  slides[slides.length - 1].classList.remove('js-current-slide');
+  // Now Japan is current slide by default
+  slides[0].classList.add('js-current-slide');
+}
+newCurrentSlideDesktop();
+
+
+const cloneSlides = () => {
+  const firstSlide = slides[0];
+  const lastSlide = slides[slides.length - 1];
+  const firstSlideClone = firstSlide.cloneNode(true);
+  const lastSlideClone = lastSlide.cloneNode(true);
+
+  slidesList.appendChild(firstSlideClone);
+  slidesList.insertBefore(lastSlideClone, firstSlide)
+  console.log(slidesList)
+};
+
+// cloneSlides();
+
+
+const moveToSlideDesktop = (slidesList, currentSlide, targetSlide) => {
+  const carouselWidth = parseInt(getComputedStyle(slidesList).width, 10);
+  const spaceBetweenSlides = 60;
+  const targetSlideLeft = parseInt(targetSlide.style.left, 10);
+  // console.log(targetSlideLeft);
+  // console.log(carouselWidth);
+  const emptyWidth = carouselWidth - slideWidth;
+  // console.log(emptyWidth / 2);
+  // console.log(targetSlideLeft - emptyWidth / 2);
+  slidesList.style.transform = 'translateX(' + -(targetSlideLeft - emptyWidth / 2) + 'px)';
+  currentSlide.classList.remove('js-current-slide');
+  targetSlide.classList.add('js-current-slide');
+}
+
+// Maybe don't need
+// const definePrevSlide = () => {
+//   const currentSlide = slidesList.querySelector('.js-current-slide');
+//   const prevSlide = currentSlide.previousElementSibling;
+//   return console.prevSlide;
+// }
+// const defineNextSlide = () => {
+//   const currentSlide = slidesList.querySelector('.js-current-slide');
+//   const nextSlide = currentSlide.nextElementSibling;
+//   return console.nextSlide;
+// }
+// definePrevSlide();
+// defineNextSlide();
+
+// Event listeners
+
+// Doesn't work
+// const checkNearCurrentSlide = (clickedElement) => {
+//   const currentSlide = slidesList.querySelector('.js-current-slide');
+//   clickedElement === currentSlide.nextElementSibling ? console.log('Next') : console.log("Prev")
+// }
+
+// For each slide defint wheter it's the next or previous slide
+slides.forEach(element => element.addEventListener('click', () => {
+  const currentSlide = slidesList.querySelector('.js-current-slide');
+  const nextSlide = currentSlide.nextElementSibling;
+  const prevSlide = currentSlide.previousElementSibling;
+
+  if (element === nextSlide) {
+    // console.log('Next');
+    moveToSlideDesktop(slidesList, currentSlide, nextSlide);
+  } else if (element === prevSlide) {
+    moveToSlideDesktop(slidesList, currentSlide, prevSlide);
+    // console.log('Prev')
+  };
+}));
+
+// slides[0].addEventListener('click', () => {
+//   const currentSlide = slidesList.querySelector('.js-current-slide');
+//   const nextSlide = currentSlide.nextElementSibling;
+//   console.log(nextSlide);
+//   const currentDot = dotsNav.querySelector('.current-dot')
+//   const nextDot = currentDot.nextElementSibling
+//   const nextIndex = slides.findIndex(slide => slide === nextSlide)
+
+//   moveToSlideDesktop(slidesList, currentSlide, nextSlide)
+//   updateDots(currentDot, nextDot)
+
+//   const firstSlide = slides[0];
+//   const lastSlide = slides[slides.length - 1];
+
+//   const firstSlideClone = firstSlide.cloneNode(true);
+//   const lastSlideClone = lastSlide.cloneNode(true);
+//   console.log(slidesList);
+//   slidesList.insertBefore(lastSlideClone, firstSlide);
+//   slides.forEach(setSlidePositionDesktop);
+//   // console.log(slidesList);
+// })
+
+// slides[2].addEventListener('click', () => {
+//   const currentSlide = slidesList.querySelector('.js-current-slide');
+//   const prevSlide = currentSlide.previousElementSibling;
+//   const currentDot = dotsNav.querySelector('.current-dot')
+//   const prevDot = currentDot.previousElementSibling
+//   const prevIndex = slides.findIndex(slide => slide === prevSlide)
+
+//   moveToSlideDesktop(slidesList, currentSlide,prevSlide)
+//   updateDots(currentDot, prevDot)
+// })
 
 
 
