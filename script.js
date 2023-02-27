@@ -49,7 +49,7 @@ const slidesList = document.querySelector('.carousel__slides-list');
 const slides = Array.from(slidesList.children);
 const leftBtn = document.querySelector('.carousel__btn--left');
 const rightBtn = document.querySelector('.carousel__btn--right');
-const dotsNav = document.querySelector('.carousel__nav');
+const dotsNav = document.querySelector('.carousel__nav--desktop');
 const dots = Array.from(dotsNav.children);
 
 const slideWidth = slides[0].getBoundingClientRect().width;
@@ -171,19 +171,13 @@ if (document.body.clientWidth < 390) {
 
 // Functions
 
-const swapSlides = () => {
+// Make the first slide the last
+const swapSlidesInArray = () => {
   const swapedElement = slides.splice(0, 1)[0];
-  // At index 2 delete 0 elements and insert swapedElement
   slides.splice(2, 0, swapedElement);
 }
-// Make the first slide the last
-swapSlides();
+swapSlidesInArray();
 
-const swapping2 = () => {
-  const el = document.getElementsByClassName('carousel__slide')[0];
-  console.log(el)
-}
-// swapping2();
 
 const setSlidePositionDesktop = () => {
   const carouselWidth = parseInt(getComputedStyle(slidesList).width, 10);
@@ -194,120 +188,110 @@ const setSlidePositionDesktop = () => {
   slides[slides.length - 1].style.left = -slideWidth + emptyWidth / 2 - spaceBetweenSlides + 'px';
   // First slide in the middle
   slides[0].style.left = emptyWidth / 2 + 'px';
-  // Second slide on the right
+  // Second slide to the right
   slides[1].style.left = slideWidth + emptyWidth / 2 + spaceBetweenSlides + 'px';
 };
 setSlidePositionDesktop();
 
 
-const newCurrentSlideDesktop = () => {
+const newCurrentSlideAndDotDesktop = () => {
   // Spain isn't current slide anymore
   slides[slides.length - 1].classList.remove('js-current-slide');
   // Now Japan is current slide by default
   slides[0].classList.add('js-current-slide');
+  // The same with dots
+  dots[0].classList.remove('current-dot')
+  dots[1].classList.add('current-dot')
 }
-newCurrentSlideDesktop();
-
-
-const cloneSlides = () => {
-  const firstSlide = slides[0];
-  const lastSlide = slides[slides.length - 1];
-  const firstSlideClone = firstSlide.cloneNode(true);
-  const lastSlideClone = lastSlide.cloneNode(true);
-
-  slidesList.appendChild(firstSlideClone);
-  slidesList.insertBefore(lastSlideClone, firstSlide)
-  console.log(slidesList)
-};
-
-// cloneSlides();
+newCurrentSlideAndDotDesktop();
 
 
 const moveToSlideDesktop = (slidesList, currentSlide, targetSlide) => {
   const carouselWidth = parseInt(getComputedStyle(slidesList).width, 10);
-  const spaceBetweenSlides = 60;
   const targetSlideLeft = parseInt(targetSlide.style.left, 10);
-  // console.log(targetSlideLeft);
-  // console.log(carouselWidth);
   const emptyWidth = carouselWidth - slideWidth;
-  // console.log(emptyWidth / 2);
-  // console.log(targetSlideLeft - emptyWidth / 2);
+
   slidesList.style.transform = 'translateX(' + -(targetSlideLeft - emptyWidth / 2) + 'px)';
   currentSlide.classList.remove('js-current-slide');
   targetSlide.classList.add('js-current-slide');
 }
 
-// Maybe don't need
-// const definePrevSlide = () => {
-//   const currentSlide = slidesList.querySelector('.js-current-slide');
-//   const prevSlide = currentSlide.previousElementSibling;
-//   return console.prevSlide;
-// }
-// const defineNextSlide = () => {
-//   const currentSlide = slidesList.querySelector('.js-current-slide');
-//   const nextSlide = currentSlide.nextElementSibling;
-//   return console.nextSlide;
-// }
-// definePrevSlide();
-// defineNextSlide();
 
-// Event listeners
-
-// Doesn't work
-// const checkNearCurrentSlide = (clickedElement) => {
-//   const currentSlide = slidesList.querySelector('.js-current-slide');
-//   clickedElement === currentSlide.nextElementSibling ? console.log('Next') : console.log("Prev")
-// }
-
-// For each slide defint wheter it's the next or previous slide
-slides.forEach(element => element.addEventListener('click', () => {
+const addListenerToSlidesDesktop = () => {
   const currentSlide = slidesList.querySelector('.js-current-slide');
   const nextSlide = currentSlide.nextElementSibling;
   const prevSlide = currentSlide.previousElementSibling;
 
-  if (element === nextSlide) {
-    // console.log('Next');
+  const currentDot = dotsNav.querySelector('.current-dot')
+  const prevDot = currentDot.previousElementSibling
+  const nextDot = currentDot.nextElementSibling
+
+  nextSlide.addEventListener('click', () => {
+    currentSlide.addEventListener('click', () => {
+      moveToSlideDesktop(slidesList, currentSlide, currentSlide);
+      updateDots(nextDot, currentDot)
+    });
     moveToSlideDesktop(slidesList, currentSlide, nextSlide);
-  } else if (element === prevSlide) {
+    updateDots(currentDot, nextDot)
+  });
+
+  prevSlide.addEventListener('click', () => {
+    currentSlide.addEventListener('click', () => {
+      moveToSlideDesktop(slidesList, currentSlide, currentSlide);
+      updateDots(prevDot, currentDot)
+    });
     moveToSlideDesktop(slidesList, currentSlide, prevSlide);
-    // console.log('Prev')
-  };
-}));
+    updateDots(currentDot, prevDot)
+  });
+}
+addListenerToSlidesDesktop();
 
-// slides[0].addEventListener('click', () => {
-//   const currentSlide = slidesList.querySelector('.js-current-slide');
-//   const nextSlide = currentSlide.nextElementSibling;
-//   console.log(nextSlide);
-//   const currentDot = dotsNav.querySelector('.current-dot')
-//   const nextDot = currentDot.nextElementSibling
-//   const nextIndex = slides.findIndex(slide => slide === nextSlide)
+// Desktop
+dotsNav.addEventListener('click', e => {
+  const targetDot = e.target.closest('.carousel__dot');
 
-//   moveToSlideDesktop(slidesList, currentSlide, nextSlide)
-//   updateDots(currentDot, nextDot)
+  if(!targetDot) return;
 
-//   const firstSlide = slides[0];
+  const currentSlide = slidesList.querySelector('.js-current-slide');
+  const currentDot = dotsNav.querySelector('.current-dot');
+  const targetIndex = dots.findIndex(dot => dot === targetDot);
+  let targetSlide = slides[targetIndex]
+
+  if (targetIndex === 0) {
+    targetSlide = slides[2]
+  } else if (targetIndex === 1) {
+    targetSlide = slides[0]
+  } else {
+    targetSlide = slides[1]
+  }
+
+  moveToSlideDesktop(slidesList, currentSlide, targetSlide);
+  updateDots(currentDot, targetDot);
+  hideShowArrow(slides, leftBtn, rightBtn, targetIndex);
+});
+
+
+
+
+
+
+
+// Might be helpful
+// const cloneSlides = () => {
+//   const secondSlide = slides[1];
 //   const lastSlide = slides[slides.length - 1];
-
-//   const firstSlideClone = firstSlide.cloneNode(true);
+//   const secondSlideClone = secondSlide.cloneNode(true);
 //   const lastSlideClone = lastSlide.cloneNode(true);
-//   console.log(slidesList);
-//   slidesList.insertBefore(lastSlideClone, firstSlide);
-//   slides.forEach(setSlidePositionDesktop);
-//   // console.log(slidesList);
-// })
+//   const spaceBetweenSlides = 60;
 
-// slides[2].addEventListener('click', () => {
-//   const currentSlide = slidesList.querySelector('.js-current-slide');
-//   const prevSlide = currentSlide.previousElementSibling;
-//   const currentDot = dotsNav.querySelector('.current-dot')
-//   const prevDot = currentDot.previousElementSibling
-//   const prevIndex = slides.findIndex(slide => slide === prevSlide)
+//   lastSlideClone.style.left = parseInt(slides[1].style.left, 10) + slideWidth + spaceBetweenSlides + 'px';
+//   slidesList.appendChild(lastSlideClone);
 
-//   moveToSlideDesktop(slidesList, currentSlide,prevSlide)
-//   updateDots(currentDot, prevDot)
-// })
+//   secondSlideClone.style.left = parseInt(lastSlide.style.left, 10) - slideWidth - spaceBetweenSlides + 'px';
+//   slidesList.insertBefore(secondSlideClone, lastSlide);
 
-
+// };
+// cloneSlides();
 
 
 
