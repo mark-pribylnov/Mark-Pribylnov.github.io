@@ -49,22 +49,103 @@ const slidesList = document.querySelector('.carousel__slides-list');
 const slides = Array.from(slidesList.children);
 const leftBtn = document.querySelector('.carousel__btn--left');
 const rightBtn = document.querySelector('.carousel__btn--right');
-const dotsNav = document.querySelector('.carousel__nav--desktop');
-const dots = Array.from(dotsNav.children);
+const dotsNavMobile = document.querySelector('.carousel__nav--mobile');
+const dotsNavDesktop = document.querySelector('.carousel__nav--desktop');
+const dotsMobile = Array.from(dotsNavMobile.children);
+const dotsDesktop = Array.from(dotsNavDesktop.children);
 
 const slideWidth = slides[0].getBoundingClientRect().width;
 
+const mediaIndicator = document.querySelector('.js-media-query-indicator');
 
 // Functions
 
-const setSlidePosition = (slide, index) => {
-  slide.style.left = slideWidth * index + 'px';
-};
-slides.forEach(setSlidePosition);
+
+if (getComputedStyle(mediaIndicator).opacity != '0.1') {
+  // If the media query isn't active
+  const setSlidePosition = (slide, index) => {
+    slide.style.left = slideWidth * index + 'px';
+  };
+  slides.forEach(setSlidePosition);
+} else {
+
+  // Make the first slide the last in order to make maintaining the code easier. (if the carousel is infinite, which was the first idea)
+  const swapSlidesInArray = () => {
+    const swapedElement = slides.splice(0, 1)[0];
+    slides.splice(2, 0, swapedElement);
+  }
+  swapSlidesInArray();
+
+
+  const setSlidePositionDesktop = () => {
+    const carouselWidth = parseInt(getComputedStyle(slidesList).width, 10);
+    const emptyWidth = carouselWidth - slideWidth
+    const spaceBetweenSlides = 60;
+
+    // Last slide moves to the left
+    slides[slides.length - 1].style.left = -slideWidth + emptyWidth / 2 - spaceBetweenSlides + 'px';
+    // First slide in the middle
+    slides[0].style.left = emptyWidth / 2 + 'px';
+    // Second slide to the right
+    slides[1].style.left = slideWidth + emptyWidth / 2 + spaceBetweenSlides + 'px';
+  };
+  setSlidePositionDesktop();
+
+
+  const newCurrentSlideAndDotDesktop = () => {
+    // Spain isn't current slide anymore
+    slides[slides.length - 1].classList.remove('js-current-slide');
+    // Now Japan is current slide by default
+    slides[0].classList.add('js-current-slide');
+    // The same with dots
+    dotsDesktop[0].classList.remove('current-dot')
+    dotsDesktop[1].classList.add('current-dot')
+  }
+  newCurrentSlideAndDotDesktop();
+
+  const addListenerToSlidesDesktop = () => {
+    const currentSlide = slidesList.querySelector('.js-current-slide');
+    const nextSlide = currentSlide.nextElementSibling;
+    const prevSlide = currentSlide.previousElementSibling;
+
+    const currentDot = dotsNavDesktop.querySelector('.current-dot')
+    const prevDot = currentDot.previousElementSibling
+    const nextDot = currentDot.nextElementSibling
+
+    nextSlide.addEventListener('click', () => {
+      currentSlide.addEventListener('click', () => {
+        moveToSlideDesktop(slidesList, currentSlide, currentSlide);
+        updateDots(nextDot, currentDot)
+      });
+      moveToSlideDesktop(slidesList, currentSlide, nextSlide);
+      updateDots(currentDot, nextDot)
+    });
+
+    prevSlide.addEventListener('click', () => {
+      currentSlide.addEventListener('click', () => {
+        moveToSlideDesktop(slidesList, currentSlide, currentSlide);
+        updateDots(prevDot, currentDot)
+      });
+      moveToSlideDesktop(slidesList, currentSlide, prevSlide);
+      updateDots(currentDot, prevDot)
+    });
+  }
+  addListenerToSlidesDesktop();
+}
 
 
 const moveToSlide = (slidesList, currentSlide, targetSlide) => {
   slidesList.style.transform = 'translateX(-' + targetSlide.style.left + ')';
+  currentSlide.classList.remove('js-current-slide');
+  targetSlide.classList.add('js-current-slide');
+}
+
+const moveToSlideDesktop = (slidesList, currentSlide, targetSlide) => {
+  const carouselWidth = parseInt(getComputedStyle(slidesList).width, 10);
+  const targetSlideLeft = parseInt(targetSlide.style.left, 10);
+  const emptyWidth = carouselWidth - slideWidth;
+
+  slidesList.style.transform = 'translateX(' + -(targetSlideLeft - emptyWidth / 2) + 'px)';
   currentSlide.classList.remove('js-current-slide');
   targetSlide.classList.add('js-current-slide');
 }
@@ -90,12 +171,13 @@ const hideShowArrow = (slides, leftBtn, rightBtn, targetIndex) => {
 }
 
 
+
 // Event listeners
 
 leftBtn.addEventListener('click', () => {
   const currentSlide = slidesList.querySelector('.js-current-slide');
   const prevSlide = currentSlide.previousElementSibling;
-  const currentDot = dotsNav.querySelector('.current-dot')
+  const currentDot = dotsNavMobile.querySelector('.current-dot')
   const prevDot = currentDot.previousElementSibling
   const prevIndex = slides.findIndex(slide => slide === prevSlide)
 
@@ -108,7 +190,7 @@ leftBtn.addEventListener('click', () => {
 rightBtn.addEventListener('click', () => {
   const currentSlide = slidesList.querySelector('.js-current-slide');
   const nextSlide = currentSlide.nextElementSibling;
-  const currentDot = dotsNav.querySelector('.current-dot')
+  const currentDot = dotsNavMobile.querySelector('.current-dot')
   const nextDot = currentDot.nextElementSibling
   const nextIndex = slides.findIndex(slide => slide === nextSlide)
 
@@ -118,19 +200,41 @@ rightBtn.addEventListener('click', () => {
 })
 
 
-dotsNav.addEventListener('click', e => {
+dotsNavMobile.addEventListener('click', e => {
   const targetDot = e.target.closest('.carousel__dot');
 
   if(!targetDot) return;
 
   const currentSlide = slidesList.querySelector('.js-current-slide');
-  const currentDot = dotsNav.querySelector('.current-dot');
-  const targetIndex = dots.findIndex(dot => dot === targetDot);
+  const currentDot = dotsNavMobile.querySelector('.current-dot');
+  const targetIndex = dotsMobile.findIndex(dot => dot === targetDot);
   const targetSlide = slides[targetIndex]
 
   moveToSlide(slidesList, currentSlide, targetSlide);
   updateDots(currentDot, targetDot);
   hideShowArrow(slides, leftBtn, rightBtn, targetIndex);
+});
+
+dotsNavDesktop.addEventListener('click', e => {
+  const targetDot = e.target.closest('.carousel__dot');
+
+  if(!targetDot) return;
+
+  const currentSlide = slidesList.querySelector('.js-current-slide');
+  const currentDot = dotsNavDesktop.querySelector('.current-dot');
+  const targetIndex = dotsDesktop.findIndex(dot => dot === targetDot);
+  let targetSlide = slides[targetIndex]
+
+  if (targetIndex === 0) {
+    targetSlide = slides[2]
+  } else if (targetIndex === 1) {
+    targetSlide = slides[0]
+  } else {
+    targetSlide = slides[1]
+  }
+
+  moveToSlideDesktop(slidesList, currentSlide, targetSlide);
+  updateDots(currentDot, targetDot);
 });
 
 
@@ -150,154 +254,6 @@ if (document.body.clientWidth < 390) {
     $clamp(element, {clamp: 6, useNativeClamp: true, animate: false})
   }
 }
-
-
-
-
-
-
-
-// --- --- CAROUSEL DESKTOP--- ---
-
-
-
-
-
-
-
-
-
-
-
-// Functions
-
-// Make the first slide the last
-const swapSlidesInArray = () => {
-  const swapedElement = slides.splice(0, 1)[0];
-  slides.splice(2, 0, swapedElement);
-}
-swapSlidesInArray();
-
-
-const setSlidePositionDesktop = () => {
-  const carouselWidth = parseInt(getComputedStyle(slidesList).width, 10);
-  const emptyWidth = carouselWidth - slideWidth
-  const spaceBetweenSlides = 60;
-
-  // Last slide moves to the left
-  slides[slides.length - 1].style.left = -slideWidth + emptyWidth / 2 - spaceBetweenSlides + 'px';
-  // First slide in the middle
-  slides[0].style.left = emptyWidth / 2 + 'px';
-  // Second slide to the right
-  slides[1].style.left = slideWidth + emptyWidth / 2 + spaceBetweenSlides + 'px';
-};
-setSlidePositionDesktop();
-
-
-const newCurrentSlideAndDotDesktop = () => {
-  // Spain isn't current slide anymore
-  slides[slides.length - 1].classList.remove('js-current-slide');
-  // Now Japan is current slide by default
-  slides[0].classList.add('js-current-slide');
-  // The same with dots
-  dots[0].classList.remove('current-dot')
-  dots[1].classList.add('current-dot')
-}
-newCurrentSlideAndDotDesktop();
-
-
-const moveToSlideDesktop = (slidesList, currentSlide, targetSlide) => {
-  const carouselWidth = parseInt(getComputedStyle(slidesList).width, 10);
-  const targetSlideLeft = parseInt(targetSlide.style.left, 10);
-  const emptyWidth = carouselWidth - slideWidth;
-
-  slidesList.style.transform = 'translateX(' + -(targetSlideLeft - emptyWidth / 2) + 'px)';
-  currentSlide.classList.remove('js-current-slide');
-  targetSlide.classList.add('js-current-slide');
-}
-
-
-const addListenerToSlidesDesktop = () => {
-  const currentSlide = slidesList.querySelector('.js-current-slide');
-  const nextSlide = currentSlide.nextElementSibling;
-  const prevSlide = currentSlide.previousElementSibling;
-
-  const currentDot = dotsNav.querySelector('.current-dot')
-  const prevDot = currentDot.previousElementSibling
-  const nextDot = currentDot.nextElementSibling
-
-  nextSlide.addEventListener('click', () => {
-    currentSlide.addEventListener('click', () => {
-      moveToSlideDesktop(slidesList, currentSlide, currentSlide);
-      updateDots(nextDot, currentDot)
-    });
-    moveToSlideDesktop(slidesList, currentSlide, nextSlide);
-    updateDots(currentDot, nextDot)
-  });
-
-  prevSlide.addEventListener('click', () => {
-    currentSlide.addEventListener('click', () => {
-      moveToSlideDesktop(slidesList, currentSlide, currentSlide);
-      updateDots(prevDot, currentDot)
-    });
-    moveToSlideDesktop(slidesList, currentSlide, prevSlide);
-    updateDots(currentDot, prevDot)
-  });
-}
-addListenerToSlidesDesktop();
-
-// Desktop
-dotsNav.addEventListener('click', e => {
-  const targetDot = e.target.closest('.carousel__dot');
-
-  if(!targetDot) return;
-
-  const currentSlide = slidesList.querySelector('.js-current-slide');
-  const currentDot = dotsNav.querySelector('.current-dot');
-  const targetIndex = dots.findIndex(dot => dot === targetDot);
-  let targetSlide = slides[targetIndex]
-
-  if (targetIndex === 0) {
-    targetSlide = slides[2]
-  } else if (targetIndex === 1) {
-    targetSlide = slides[0]
-  } else {
-    targetSlide = slides[1]
-  }
-
-  moveToSlideDesktop(slidesList, currentSlide, targetSlide);
-  updateDots(currentDot, targetDot);
-  hideShowArrow(slides, leftBtn, rightBtn, targetIndex);
-});
-
-
-
-
-
-
-
-// Might be helpful
-// const cloneSlides = () => {
-//   const secondSlide = slides[1];
-//   const lastSlide = slides[slides.length - 1];
-//   const secondSlideClone = secondSlide.cloneNode(true);
-//   const lastSlideClone = lastSlide.cloneNode(true);
-//   const spaceBetweenSlides = 60;
-
-//   lastSlideClone.style.left = parseInt(slides[1].style.left, 10) + slideWidth + spaceBetweenSlides + 'px';
-//   slidesList.appendChild(lastSlideClone);
-
-//   secondSlideClone.style.left = parseInt(lastSlide.style.left, 10) - slideWidth - spaceBetweenSlides + 'px';
-//   slidesList.insertBefore(secondSlideClone, lastSlide);
-
-// };
-// cloneSlides();
-
-
-
-
-
-
 
 
 
@@ -382,3 +338,28 @@ dotsNav.addEventListener('click', e => {
 
 // Turn on if you want to play with window size to see how it works
 // window.addEventListener('resize', resizePadding)
+
+
+
+
+
+
+
+
+
+// Might be helpful for infinite desktop carousel
+// const cloneSlides = () => {
+//   const secondSlide = slides[1];
+//   const lastSlide = slides[slides.length - 1];
+//   const secondSlideClone = secondSlide.cloneNode(true);
+//   const lastSlideClone = lastSlide.cloneNode(true);
+//   const spaceBetweenSlides = 60;
+
+//   lastSlideClone.style.left = parseInt(slides[1].style.left, 10) + slideWidth + spaceBetweenSlides + 'px';
+//   slidesList.appendChild(lastSlideClone);
+
+//   secondSlideClone.style.left = parseInt(lastSlide.style.left, 10) - slideWidth - spaceBetweenSlides + 'px';
+//   slidesList.insertBefore(secondSlideClone, lastSlide);
+
+// };
+// cloneSlides();

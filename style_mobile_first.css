@@ -544,10 +544,6 @@ h1 {
   display: none;
 }
 
-.carousel__nav {
-
-}
-
 .carousel__nav--mobile {
   position: absolute;
   bottom: 3%;
@@ -781,6 +777,9 @@ h1 {
 /* Change width when you get to this point */
 @media screen and (min-width: 860px) {
 
+  .js-media-query-indicator {
+    opacity: 0.1;
+  }
 
 /* --- --- SECTION 1. Preview --- --- */
 
