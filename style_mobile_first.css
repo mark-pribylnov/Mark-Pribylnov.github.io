@@ -204,19 +204,31 @@ h1 {
 /* Destinations section buttons */
 
 .destinations__btn {
-  padding: 0.73em 0em;
-  font-size: var(--fs-buttons);
-  margin: 0.88em auto 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.5em;
-  font-family: 'Red Hat Text', sans-serif;
-  max-width: 24%;
+  padding: 0.73em 0em;
+  font-size: var(--fs-buttons);
+  margin: 0.88em auto;
+  font-family: var(--ff-heading-and-buttons);
+  width: clamp(92px, calc(228px - calc(calc(1440px - 100vw) / calc(calc(1440 - 390) / calc(228 - 92)))), 228px);
+  max-height: 59px;
 }
 
 .destinations__btn-arrow {
-  width: 11%;
+  width: clamp(10px, calc(42px - calc(calc(1440px - 100vw) / calc(calc(1440 - 390) / calc(42 - 10)))), 42px);
+  margin-right: 6px;
+}
+
+@media screen and (min-width: 860px) {
+  .destinations__btn {
+    margin-top: 1.68em;
+  }
+
+  .destinations__btn-arrow {
+    margin-right: 8px;
+    margin-left: -4px;
+  }
 }
 
 
@@ -230,7 +242,7 @@ h1 {
   justify-content: center;
   align-items: center;
   gap: 0.5em;
-  font-family: 'Red Hat Text', sans-serif;
+  font-family: var(--ff-heading-and-buttons);
   max-width: 24%;
 }
 
@@ -304,7 +316,7 @@ h1 {
 
 .logo__text {
   font-family: var(--ff-logo);
-  font-size: 3.2rem;
+  font-size: var(--fs-logo);
 }
 
 .nav__list {
