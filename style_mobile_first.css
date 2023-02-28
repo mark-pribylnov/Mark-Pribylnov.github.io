@@ -23,7 +23,6 @@
 
   /* Mobile font sizes */
   /* The same logic is used as for responsive padding's calc() function */
-
   /* Here's the explanation:
   clamp(1rem [min fs], calc(2rem [max fs] - calc(calc(1440px [max viewport] - 100vw [current viewport]) / calc(calc(1440 [max viewport] - 390 [min viewport]) / calc(20[max fs in px] - 10[min fs in px])))), 2rem [max fs])
   */
@@ -201,7 +200,7 @@ h1 {
 }
 
 
-/* Destinations section buttons */
+/* Destinations section button */
 
 .destinations__btn {
   display: flex;
@@ -234,20 +233,33 @@ h1 {
 
 /* Stories section button */
 
+
 .stories__btn {
-  padding: 0.73em 0em;
-  font-size: var(--fs-buttons);
-  margin: 0.36em auto 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.5em;
+  padding: 0.73em 0em;
+  font-size: var(--fs-buttons);
+  margin: 0.38em auto 0;
   font-family: var(--ff-heading-and-buttons);
-  max-width: 24%;
+  width: clamp(92px, calc(228px - calc(calc(1440px - 100vw) / calc(calc(1440 - 390) / calc(228 - 92)))), 228px);
+  max-height: 59px;
 }
 
 .stories__btn-arrow {
-  width: 11%;
+  width: clamp(10px, calc(42px - calc(calc(1440px - 100vw) / calc(calc(1440 - 390) / calc(42 - 10)))), 42px);
+  margin-right: 6px;
+}
+
+@media screen and (min-width: 860px) {
+  .stories__btn {
+    margin: 1.48em auto 1.15em;
+  }
+
+  .stories__btn-arrow {
+    margin-right: 8px;
+    margin-left: -4px;
+  }
 }
 
 
@@ -618,51 +630,19 @@ h1 {
   }
 
 
-/*
-  .carousel {
-    position: relative;
-    width: 92%;
-    margin: 0 auto;
-    overflow: hidden;
-    border-radius: 1em;
+  .carousel__nav--desktop {
+    display: flex;
   }
 
-
-  .carousel__slides-list {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    min-height: 210px;
-    transition: transform 500ms ease-in;
+  .carousel__nav--mobile {
+    display: none;
   }
 
-  .carousel__slide {
-    position: absolute;
-    top: 0;
-    bottom: 0;
+  .carousel__dot {
+    width: 20px;
+    height: 20px;
+    margin-left: 0;
   }
-
-  .carousel__img {
-    height: 100%;
-    max-width: none;
-    object-fit: cover;
-  }
-  } */
-
-
-.carousel__nav--desktop {
-  display: flex;
-}
-
-.carousel__nav--mobile {
-  display: none;
-}
-
-.carousel__dot {
-  width: 20px;
-  height: 20px;
-  margin-left: 0;
-}
 }
 
 
@@ -711,12 +691,13 @@ h1 {
   padding: 0.1em 0 0 0.95em;
   font-family: var(--ff-body);
   color: #0D606F;
-  padding-inline: clamp(1px, calc(120px - calc(calc(1440px - 100vw) / calc(calc(1440 - 390) / calc(120 - 1)))), 120px);
+  padding-inline: clamp(15px, calc(120px - calc(calc(1440px - 100vw) / calc(calc(1440 - 390) / calc(120 - 15)))), 120px);
 }
 
 .l-stories__img-wrapper {
   padding-top: 0.38em;
   margin-right: 10px;
+  max-width: 44%;
 }
 
 .stories__img {
@@ -724,9 +705,14 @@ h1 {
   filter: drop-shadow(0px 4px 4px #0D606F);
 }
 
+.stories__img--desktop {
+  display: none;
+  object-fit: cover;
+  height: 95%;
+}
+
 .l-stories__description {
-  max-width: 50%;
-  /* margin-right: 1.4em; */
+  max-width: 54%;
 }
 
 .stories__text-wrapper {
@@ -741,6 +727,7 @@ h1 {
   font-size: var(--fs-stories-text);
   text-decoration: underline;
   font-weight: bold;
+  color: #0D606F;
 }
 
 .stories__link:visited {
@@ -761,6 +748,10 @@ h1 {
   min-height: 51px;
 }
 
+.footer__text {
+  display: none;
+}
+
 .footer__list {
   list-style: none;
   display: flex;
@@ -774,13 +765,20 @@ h1 {
 
 
 @media screen and (min-width: 391px) {
-/* Set backgrounds for desktop at 391px in order to avoid expanding mobile backgrounds */
   .header-bg-container {
     background-image: url('./assets/img/bg.jpg');
   }
 
   .l-bottom-bg-container {
     background-image: url('./assets/img/bottom_bg.jpg');
+  }
+
+  .stories__img--mobile {
+    display: none;
+  }
+
+  .stories__img--desktop {
+    display: inline;
   }
 
 }
@@ -904,10 +902,70 @@ h1 {
   /* --- --- SECTION 3. Destinations --- --- */
 
 
-
   .destinations__heading {
     margin-top: 1.95em;
     margin-bottom: 1.11em;
+  }
+
+  /* --- --- SECTION 4. Stories --- --- */
+
+
+  .l-stories-container {
+    padding-top: 2.7em;
+  }
+
+  .stories__item {
+    justify-content: start;
+    margin-bottom: 1.5em;
+  }
+
+  .l-stories__img-wrapper {
+    padding-top: 0;
+    margin-right: 2.5em;
+  }
+
+  .stories__img--desktop{
+    height: 99%;
+  }
+
+  .stories__heading {
+    margin-top: 2em;
+  }
+
+  .l-stories__description {
+    max-width: 63%;
+  }
+
+  .stories__text-wrapper {
+    margin-top: 1.2em;
+  }
+
+  .stories__sub-heading {
+    margin: 0;
+    font-weight: 400;
+  }
+
+  /* --- --- FOOTER --- --- */
+
+  .footer {
+    min-height: 61px;
+  }
+  .footer-wrap {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 7.5em;
+  }
+
+  .footer__list {
+    margin-top: 0.6em;
+    margin-bottom: 0;
+  }
+
+  .footer__text {
+    display: block;
+    /* margin-right: 19.9em; */
+    margin-right: 24.1%;
+    margin-top: 1.25em;
   }
 
 }

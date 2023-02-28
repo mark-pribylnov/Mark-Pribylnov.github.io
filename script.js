@@ -253,6 +253,14 @@ if (document.body.clientWidth < 390) {
   for (const element of resizedText) {
     $clamp(element, {clamp: 6, useNativeClamp: true, animate: false})
   }
+} else if (document.body.clientWidth === 390) {
+  for (const element of resizedText) {
+    $clamp(element, {clamp: 8, useNativeClamp: true, animate: false})
+  }
+} else {
+  for (const element of resizedText) {
+    $clamp(element, {clamp: 7, useNativeClamp: true, animate: false})
+  }
 }
 
 
