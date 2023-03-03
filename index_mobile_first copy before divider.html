@@ -29,71 +29,55 @@
     <!-- The indicator tells JS that the media query is applied and eliminats the need to specify the screen width in JS -->
     <div class="js-media-query-indicator"></div>
 
-    <div class="overlay is-hidden"></div>
+    <div class="popup popup--signup">
+      <h3 class="popup__heading">Create account</h3>
 
-    <div class="popup popup--login is-hidden">
+      <div class="l-popup__data-container">
+        <div class="l-popup__input-container">
+          <label class="popup__label" for="email">E-mail</label>
+          <input class="popup__input" type="email" name="email" required>
+        </div>
+
+        <div class="l-popup__input-container">
+          <label class="popup__label" for="password">Password</label>
+          <input class="popup__input" type="password" name="password" required>
+        </div>
+
+        <button class="popup__button popup__button--submit" type="submit">Sign Up</button>
+        <hr class="popup__divider">
+        <p class="popup__question">Already have an account?<a class="popup__link"> Log in</a></p>
+      </div>
+    </div>
+
+    <div class="popup popup--login">
       <h3 class="popup__heading">Log in to your account</h3>
 
       <button class="popup__button popup__button--facebook">Sign In with Facebook</button>
       <button class="popup__button popup__button--google">Sign In with Google</button>
 
-      <div class="popup__divider-with-words">
-        <div></div>
-        <span>or</span>
-        <div></div>
-      </div>
+      <hr class="popup__divider popup__divider--with-words">
 
       <div class="l-popup__data-container">
 
-        <form action="#">
+        <div class="l-popup__input-container">
+          <label class="popup__label" for="email">E-mail</label>
+          <input class="popup__input" type="email" name="email" required>
+        </div>
 
-          <div class="l-popup__input-container">
-            <label class="popup__label" for="email">E-mail</label>
-            <input class="popup__input" type="email" name="email" required>
-          </div>
+        <div class="l-popup__input-container">
+          <label class="popup__label" for="password">Password</label>
+          <input class="popup__input" type="password" name="password" required>
+        </div>
 
-          <div class="l-popup__input-container">
-            <label class="popup__label" for="password">Password</label>
-            <input class="popup__input" type="password" name="password" required>
-          </div>
-
-          <input class="popup__button popup__button--submit" type="submit" value="Sign In">
-
-        </form>
+        <button class="popup__button popup__button--submit" type="submit">Sign In</button>
 
         <p class="popup__question">
-          <a class="popup__link" href="#">Forgot Your Password?</a>
+          <a class="popup__link">Forgot Your Password?</a>
         </p>
 
         <hr class="popup__divider">
 
-        <p class="popup__question">Don’t have an account?<a class="popup__link" href="#"> Register</a></p>
-      </div>
-    </div>
-
-    <div class="popup popup--signup is-hidden">
-      <h3 class="popup__heading">Create account</h3>
-
-      <div class="l-popup__data-container">
-
-        <form action="#">
-
-          <div class="l-popup__input-container">
-            <label class="popup__label" for="email">E-mail</label>
-            <input class="popup__input" type="email" name="email" required>
-          </div>
-
-          <div class="l-popup__input-container">
-            <label class="popup__label" for="password">Password</label>
-            <input class="popup__input" type="password" name="password" required>
-          </div>
-
-          <input class="popup__button popup__button--submit" type="submit" value="Sign Up">
-
-        </form>
-
-        <hr class="popup__divider">
-        <p class="popup__question">Already have an account?<a class="popup__link" href="#"> Log in</a></p>
+        <p class="popup__question">Don’t have an account?<a class="popup__link"> Register</a></p>
       </div>
     </div>
 
