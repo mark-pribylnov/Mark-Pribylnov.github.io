@@ -1,6 +1,9 @@
 <!--
   "l-" in class names means "layout".
   "js-" means no CSS styles. Used only for JavaScript
+
+  'mob' - mobile
+  'btn' - button
 -->
 
 <!DOCTYPE html>
@@ -31,11 +34,11 @@
 
     <div class="overlay is-hidden"></div>
 
-    <div class="popup popup--login is-hidden">
+    <div class="popup popup--login js-login-popup is-hidden">
       <h3 class="popup__heading">Log in to your account</h3>
 
-      <button class="popup__button popup__button--facebook">Sign In with Facebook</button>
-      <button class="popup__button popup__button--google">Sign In with Google</button>
+      <button class="popup__button popup__button--facebook" type="button">Sign In with Facebook</button>
+      <button class="popup__button popup__button--google" type="button">Sign In with Google</button>
 
       <div class="popup__divider-with-words">
         <div></div>
@@ -67,11 +70,11 @@
 
         <hr class="popup__divider">
 
-        <p class="popup__question">Don’t have an account?<a class="popup__link" href="#"> Register</a></p>
+        <p class="popup__question">Don’t have an account?<a class="popup__link js-register-button" href="#"> Register</a></p>
       </div>
     </div>
 
-    <div class="popup popup--signup is-hidden">
+    <div class="popup popup--signup js-signup-popup is-hidden">
       <h3 class="popup__heading">Create account</h3>
 
       <div class="l-popup__data-container">
@@ -93,7 +96,7 @@
         </form>
 
         <hr class="popup__divider">
-        <p class="popup__question">Already have an account?<a class="popup__link" href="#"> Log in</a></p>
+        <p class="popup__question">Already have an account?<a class="popup__link js-login-button" href="#"> Log in</a></p>
       </div>
     </div>
 
@@ -114,7 +117,10 @@
             <li class="nav__item"><a class="nav__link" href="#stories">Travel Stories</a></li>
           </ul>
         </nav>
-        <button class="btn btn--login">Login</button>
+        <button class="btn btn--login js-login-button" type="button">Login</button>
+        <!-- FROM MDN: If your buttons are not for submitting form data to a server, be sure to set their type attribute to button.
+          Otherwise they will try to submit form data and to load the (nonexistent) response, possibly destroying
+          the current state of the document. -->
       </header>
         <section id="preview" class="preview">
           <div class="container">
@@ -122,7 +128,7 @@
             <p class="preview__text">Receive personalized recommendations for countries, hotels, activities and more</p>
             <form class="search-form">
               <input class="search-form__placeholder" type="text" placeholder="What would you like to do?">
-              <button class="btn btn_search-form">Start Planning</button>
+              <button class="btn btn_search-form" type="button">Start Planning</button>
             </form>
           </div>
         </section>
@@ -133,7 +139,7 @@
             <li class="nav-mobile__item"><a class="nav-mobile__link" href="#steps">Plan Your Trip</a></li>
             <li class="nav-mobile__item"><a class="nav-mobile__link" href="#destinations">Destinations</a></li>
             <li class="nav-mobile__item"><a class="nav-mobile__link" href="#stories">Travel Stories</a></li>
-            <li class="nav-mobile__item"><a class="nav-mobile__link" href="#">Account</a></li>
+            <li class="nav-mobile__item"><a class="nav-mobile__link js-login-button" href="#">Account</a></li>
             <li class="nav-mobile__item"><a class="nav-mobile__link" href="#footer">Social Media</a></li>
           </ul>
         </nav>
@@ -176,10 +182,10 @@
               <img class="carousel__img carousel__img--desktop" src="assets/img/usa_desktop.jpg" alt="usa">
             </li>
           </ul>
-          <button class="carousel__btn carousel__btn--left is-hidden">
+          <button class="carousel__btn carousel__btn--left is-hidden" type="button">
             <img src="assets/svg/arrow-left.svg" alt="left arrow">
           </button>
-          <button class="carousel__btn carousel__btn--right">
+          <button class="carousel__btn carousel__btn--right" type="button">
             <img src="assets/svg/arrow-right.svg" alt="right arrow">
           </button>
           <div class="carousel__nav carousel__nav--mobile">
@@ -193,7 +199,7 @@
           <span class="carousel__dot"></span>
           <span class="carousel__dot"></span>
         </div>
-        <button class="destinations__btn btn">
+        <button class="destinations__btn btn" type="button">
           <img class="destinations__btn-arrow" src="assets/svg/arrow.svg" alt="arrow">
           <span class="destinations__btn-text">Find More</span>
         </button>
@@ -256,7 +262,7 @@
               </p>
             </div>
           </article>
-          <button class="stories__btn btn">
+          <button class="stories__btn btn" type="button">
             <img class="stories__btn-arrow" src="assets/svg/arrow.svg" alt="arrow">
             <span  class="stories__btn-text">See More</span>
           </button>

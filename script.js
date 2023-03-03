@@ -14,25 +14,25 @@ const closeBtn = document.querySelector('.nav-mobile__close-btn');
 const navMobileLinks = document.getElementsByClassName('nav-mobile__link');
 
 
-function onClick(event) {
+function openMobileMenu(event) {
   event.stopPropagation();
   menu.classList.toggle(openClass);
   if(menu.classList.contains(openClass)) {
-    document.addEventListener('click', offClick)
+    document.addEventListener('click', closeMobileMenu)
   }
 }
 
-function offClick() {
+function closeMobileMenu() {
   menu.classList.toggle(openClass)
-  document.removeEventListener('click', offClick)
+  document.removeEventListener('click', closeMobileMenu)
 }
 
 
-openBtn.addEventListener('click', onClick);
-closeBtn.addEventListener('click', offClick);
+openBtn.addEventListener('click', openMobileMenu);
+closeBtn.addEventListener('click', closeMobileMenu);
 
 for (let link of navMobileLinks) {
-  link.addEventListener('click', offClick)
+  link.addEventListener('click', closeMobileMenu)
 }
 
 menu.addEventListener('click', event => event.stopPropagation());
@@ -41,7 +41,7 @@ menu.addEventListener('click', event => event.stopPropagation());
 
 
 
-// --- --- CAROUSEL MOBILE--- ---
+// --- --- CAROUSEL --- ---
 
 
 
@@ -268,6 +268,73 @@ if (document.body.clientWidth < 390) {
 
 
 
+// --- --- LOGIN POPUP --- ---
+
+
+
+
+const loginBtns = document.getElementsByClassName('js-login-button')
+const registerBtn = document.querySelector('.js-register-button')
+const loginPopup = document.querySelector('.js-login-popup');
+const signupPopup = document.querySelector('.js-signup-popup');
+const overlay = document.querySelector('.overlay');
+const closingClass = 'is-hidden';
+
+function showLoginPopup (event) {
+  event.stopPropagation();
+
+  if(loginPopup.classList.contains(closingClass) && signupPopup.classList.contains(closingClass)) {
+    overlay.classList.toggle(closingClass);
+  }
+  
+  loginPopup.classList.toggle(closingClass);
+
+  if(!signupPopup.classList.contains(closingClass)) {
+    signupPopup.classList.toggle(closingClass)
+  }
+
+  if(!overlay.classList.contains(closingClass)) {
+    document.addEventListener('click', closeLoginPopup)
+  }
+}
+
+function showSignupPopup (event) {
+  event.stopPropagation();
+
+  loginPopup.classList.toggle(closingClass);
+  signupPopup.classList.toggle(closingClass);
+
+  document.addEventListener('click', closeSignupPopup)
+}
+
+function closeLoginPopup () {
+  if(!loginPopup.classList.contains(closingClass)) {
+    loginPopup.classList.toggle(closingClass)
+  }
+
+  overlay.classList.toggle(closingClass);
+  document.removeEventListener('click', closeLoginPopup)
+}
+
+function closeSignupPopup () {
+  signupPopup.classList.toggle(closingClass);
+
+  if(!overlay.classList.contains(closingClass)) {
+    overlay.classList.toggle(closingClass)
+  }
+
+  document.removeEventListener('click', closeSignupPopup)
+  document.removeEventListener('click', closeLoginPopup)
+}
+
+for (const element of loginBtns) {
+  element.addEventListener('click', showLoginPopup);
+}
+registerBtn.addEventListener('click', showSignupPopup);
+
+
+loginPopup.addEventListener('click', event => event.stopPropagation());
+signupPopup.addEventListener('click', event => event.stopPropagation());
 
 
 
