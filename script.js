@@ -272,13 +272,44 @@ if (document.body.clientWidth < 390) {
 
 
 
+const inputForms = document.getElementsByClassName('js-input-form')
+// const inputFields = document.getElementsByClassName('js-input-field')
 
 const loginBtns = document.getElementsByClassName('js-login-button')
 const registerBtn = document.querySelector('.js-register-button')
 const loginPopup = document.querySelector('.js-login-popup');
 const signupPopup = document.querySelector('.js-signup-popup');
 const overlay = document.querySelector('.overlay');
+const submitButtons = document.getElementsByClassName('js-submit-button')
 const closingClass = 'is-hidden';
+
+// WHEY YOU'RE DONE WITH FORMS MAKE SIGN IN HIDDEn AND INPUT REQUIRED
+
+// Forms
+
+const submitForm = (event) => {
+  // Don't reload page
+  event.preventDefault();
+
+  // Alert input values
+  const currentForm = event.target.parentNode;
+  const inputFields = currentForm.getElementsByClassName('js-input-field')
+  const email = inputFields[0].value;
+  const password = inputFields[1].value;
+
+  if (email || password) {
+    alert('Email: ' + email + '\nPassword: ' + password)
+  } else {
+    alert('Enter email or password')
+  }
+}
+
+
+for (const element of submitButtons) {
+  element.addEventListener('click', submitForm);
+};
+
+// Popups
 
 function showLoginPopup (event) {
   event.stopPropagation();
@@ -286,7 +317,7 @@ function showLoginPopup (event) {
   if(loginPopup.classList.contains(closingClass) && signupPopup.classList.contains(closingClass)) {
     overlay.classList.toggle(closingClass);
   }
-  
+
   loginPopup.classList.toggle(closingClass);
 
   if(!signupPopup.classList.contains(closingClass)) {
