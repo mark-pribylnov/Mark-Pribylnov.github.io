@@ -1,32 +1,18 @@
-/* Mobile First BRANCH DESCRIPTION
-
-1. Review html structure
-2. Write CSS almost from scratch in the following ofrder: typography, colors, padding. Make layout only when there's nothing else to do.
-3. If you need to, change classes
-
-*/
-
-
 /* --- --- GENERAL STYLES --- --- */
-
-
 
 
 
 :root {
   font-size: 62.5%;
-  /* Equal to 10px and scalable */
+  /* Equals to 10px and it's scalable */
 
   --ff-body: 'Aleo', serif;
   --ff-heading-and-buttons: 'Red Hat Text', sans-serif;
   --ff-logo: 'Magra', sans-serif;
 
-  /* Mobile font sizes */
-  /* The same logic is used as for responsive padding's calc() function */
-  /* Here's the explanation:
-  clamp(1rem [min fs], calc(2rem [max fs] - calc(calc(1440px [max viewport] - 100vw [current viewport]) / calc(calc(1440 [max viewport] - 390 [min viewport]) / calc(20[max fs in px] - 10[min fs in px])))), 2rem [max fs])
-  */
 
+
+  /* Mobile and desktop font sizes */
 
   --fs-popup-heading: clamp(1.6rem, calc(3.2rem - calc(calc(1440px - 100vw) / calc(calc(1440 - 390) / calc(32 - 16)))), 3.2rem);
   --fs-popup-label: clamp(1.2rem, calc(1.6rem - calc(calc(1440px - 100vw) / calc(calc(1440 - 390) / calc(16 - 12)))), 1.6rem);
@@ -43,7 +29,7 @@
   --fs-stories-text: clamp(0.9rem, calc(2rem - calc(calc(1440px - 100vw) / calc(calc(1440 - 390) / calc(20 - 9)))), 2rem);
 
 
-  /* Desktop font sizes */
+  /* Desktop font sizes only */
   --fs-preview-title: clamp(4rem, calc(8rem - calc(calc(1440px - 100vw) / calc(calc(1440 - 860) / calc(80 - 40)))), 8rem);
   --fs-logo: 3.2rem;
   --fs-preview-text: 2rem;
@@ -51,7 +37,22 @@
   --fs-login-button: 1.6rem;
   --fs-copyrights: 1.6rem;
 
+   /* Here's the explanation of the formula for linear changing size for anything: font-size, padding, width and so on.
+  For example: If padding at 1440px is 120px and at 390px is 30px you don't even need a media query.
 
+  Let's consider responsive font size:
+  clamp(A1, calc(B1 - calc(calc(MaxV1 - 100vw) / calc(calc(MaxV2 - MinV) / calc(B2 - A2)))), B1)
+
+  A1 - min font-size with units (1rem)
+  B1 - max font-size with units (2rem)
+  MaxV1 - max viewport size of the layout in px with units (1440px)
+  MaxV2 - max viewport size of the layout in px without units (1440)
+  MinV - min viewport size of the layout in px without units (290)
+  B2 - max font-size in px without units (20) (2rem with root font-size 62.5% = 20px)
+  A2 - min font-size in px without units (10)
+
+  For more detailed exlanations see script.js file in the end
+  */
 
 }
 
@@ -65,7 +66,7 @@ body {
   max-width: 1440px;
   font-size: 1.6rem;
   font-family: var(--ff-heading-and-buttons); /* Most of the elements use this font-family */
-  color: #ffffff;
+  color: #fff;
 }
 
 *, *::before, *::after {
@@ -74,6 +75,7 @@ body {
 
 img {
   max-width: 100%;
+  /* Prevent images from stretching more than their actual size */
 }
 
 a {
@@ -268,6 +270,7 @@ h1 {
 }
 
 
+
 /* Button animation */
 
 .btn:hover {
@@ -302,8 +305,6 @@ h1 {
   top: 0;
 }
 
-
-/* Icon animation */
 
 
 
@@ -482,14 +483,6 @@ h1 {
   margin-inline: 0.5em;
 }
 
-/* .popup__divider--with-words::after {
-  background-color: #D1E0E3;
-  content: 'or';
-  padding: 0.5em;
-  position: relative;
-  top: -12px;
-  right: 1px;
-} */
 
 .popup__question {
   font-family: var(--ff-body);
@@ -518,13 +511,14 @@ h1 {
   color: #0D606F;
 }
 
-/* Mobile menu */
 
+
+/* Mobile menu */
 
 .header-bg-container {
   overflow: hidden;
   position: relative;
-}  /* Hides mobile menu */
+}  /* Hide mobile menu */
 
 .nav-mobile {
   position: absolute;
@@ -565,7 +559,7 @@ h1 {
 
 /* Desktop menu (except header)*/
 
-/* These header styles used for mobile viewport. To make a desktop header, tyles defined within media queries are applied." */
+/* These header styles used for mobile viewport. To make a desktop header, tyles defined within media queries are applied. */
 .header {
   display: flex;
   justify-content: space-between;
@@ -600,10 +594,6 @@ h1 {
   box-shadow: inset 7em 0 0 0 #0D606F;
 }
 
-
-
-
-
 .logo__text {
   display: none;
 }
@@ -628,7 +618,7 @@ h1 {
   width: clamp(360px, calc(892px - calc(calc(1440px - 100vw) / calc(calc(1440 - 390) / calc(892 - 360)))), 892px);
 }
 
-/* Prevent overflowing at 320 - 390px */
+/* Prevent overflowing at 320px - 390px */
 @media screen and (max-width: 390px) {
   .search-form {
     width: 92%;
@@ -784,6 +774,8 @@ h1 {
   margin-bottom: 1.45em;
 }
 
+
+
 /* Carousel */
 
 .carousel {
@@ -873,7 +865,6 @@ h1 {
   }
 
   .carousel__slides-list {
-    /* min-height: 800px; */
     min-height: clamp(210px, calc(800px - calc(calc(1440px - 100vw) / calc(calc(1440 - 390) / calc(800 - 210)))), 800px);
   }
 
@@ -1023,7 +1014,7 @@ h1 {
 
 
 
-
+/* Replace low-quality images with higher-resolution versions at their max size */
 @media screen and (min-width: 391px) {
   .header-bg-container {
     background-image: url('./assets/img/bg.jpg');
@@ -1051,7 +1042,11 @@ h1 {
     opacity: 0.1;
   }
 
+
+
 /* --- --- SECTION 1. Preview --- --- */
+
+
 
   .preview {
     padding-bottom: clamp(60px, calc(255px - calc(calc(1440px - 100vw) / calc(calc(1440 - 860) / calc(255 - 60)))), 255px);
@@ -1062,7 +1057,7 @@ h1 {
     box-shadow: 0 0.25em 0.25em 0 rgba(13, 96, 111, 0.5);
     padding: 1.17em 7.5em 1.17em 7.6em;
     padding-inline: clamp(15px, calc(120px - calc(calc(1440px - 100vw) / calc(calc(1440 - 860) / calc(120 - 15)))), 120px); /* Responsive padding*/
-    /* DON'T delete px on the left side and DON'T add units to the right side. Otherwise, the function not working */
+    /* DON'T delete px on the left side and DON'T add units to the right side. Otherwise, the function isn't working */
   }
 
   .burger-btn {
@@ -1114,6 +1109,8 @@ h1 {
 /* --- --- SECTION 2. Steps --- --- */
 
 
+
+
   .steps-wrapper {
     margin-top: 2.5em;
   }
@@ -1159,7 +1156,9 @@ h1 {
   }
 
 
+
   /* --- --- SECTION 3. Destinations --- --- */
+
 
 
   .destinations__heading {
@@ -1167,7 +1166,10 @@ h1 {
     margin-bottom: 1.11em;
   }
 
+
+
   /* --- --- SECTION 4. Stories --- --- */
+
 
 
   .l-stories-container {
@@ -1205,7 +1207,11 @@ h1 {
     font-weight: 400;
   }
 
+
+
   /* --- --- FOOTER --- --- */
+
+
 
   .footer {
     min-height: 61px;
@@ -1233,10 +1239,7 @@ h1 {
 
 
 
-
-
-
-/* Must be in the end to avoid overwriting ⬇ */
+/* Must be in the end to avoid overwriting */
 .is-hidden {
   display: none;
 }

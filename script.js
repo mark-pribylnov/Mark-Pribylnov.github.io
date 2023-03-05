@@ -1,6 +1,3 @@
-// console.log('Grade for part 1:\n1. Вёрстка валидная +10 \n2. Вёрстка семантическая +20 \n3. Вёрстка соответствует макету +48\n4. для построения сетки используются флексы +2\n5. при уменьшении масштаба страницы браузера вёрстка размещается по центру, а не сдвигается в сторону +2\n6. фоновый цвет (цвет есть только белый в секции stories) тянется на всю ширину страницы +2\n7. иконки добавлены в формате .svg + 2\n8. изображения добавлены в формате .jpg +2\n9. есть favicon +2\n10. плавная прокрутка по якорям +5\n11. иконки соцсетей в футере при нажатии на них ведут на гитхаб автора проекта и на страницу курса + 5\n12. визуальные эффекты, например, изменение цвета фона или цвета шрифта. + 5\n13. плавное изменение внешнего вида элемента при наведении и клике не влияющее на соседние элементы +5\nTotal: 110 = 100 (max)')
-// console.log('Grade for part 2: \n1. Вёрстка соответствует макету. Ширина экрана 390px +48:\n • <header> +6\n • preview 9\n• steps +9\n• destinations +9\n• stories +9\n• <footer> +6\n2. Нет полосы прокрутки при ширине страницы от 1440рх до 320px +15\n3. На ширине экрана 390рх и меньше реализовано адаптивное меню:\n • при ширине страницы 390рх панель навигации скрывается (скрывается на 860px, потому что невозможно красиво поместить всю панель на ширине 391px), появляется бургер-иконка +2\n • при нажатии на бургер-иконку плавно появляется адаптивное меню +4\n • адаптивное меню соответствует макету +4\n • при нажатии на крестик адаптивное меню плавно скрывается уезжая за экран +4\n • ссылки в адаптивном меню работают, обеспечивая плавную прокрутку по якорям +4 (все кроме Account, она пока что просто закрывает меню)\n • при клике по ссылке в адаптивном меню адаптивное меню плавно скрывается, также скрытие меню происходит если сделать клик вне данного окна +4\nTotal: 85 = 75 (max)')
-// console.log('Grade for part 3: \n1. Слайдер изображений в секции  + 50:\n • принцип карусели\n • точки внизу соответствую номеру слайда\n • анимация плавного перемещения\n2. Нажатие на кнопку Login (кнопка Account в мобильной версии) показывает сверстанный логин попап + 50:\n • логин попап соответствует верстке его закрытие происходит при клике вне попапа +25\n • логин попап имеет 2 инпута (email и пароль) при нажатии на кнопку Sign In показывается браузерный алерт с введенными данными +25\n3. Нажатие на кнопку Register на Login попапе меняет разметку попапа на разметку Sign Up попапа согласно макету. +25')
 
 // --- --- MOBILE MENU --- ---
 
@@ -49,16 +46,20 @@ menu.addEventListener('click', event => event.stopPropagation());
 
 const slidesList = document.querySelector('.carousel__slides-list');
 const slides = Array.from(slidesList.children);
+
 const leftBtn = document.querySelector('.carousel__btn--left');
 const rightBtn = document.querySelector('.carousel__btn--right');
+
 const dotsNavMobile = document.querySelector('.carousel__nav--mobile');
 const dotsNavDesktop = document.querySelector('.carousel__nav--desktop');
+
 const dotsMobile = Array.from(dotsNavMobile.children);
 const dotsDesktop = Array.from(dotsNavDesktop.children);
 
 const slideWidth = slides[0].getBoundingClientRect().width;
 
 const mediaIndicator = document.querySelector('.js-media-query-indicator');
+
 
 // Functions
 
@@ -71,7 +72,8 @@ if (getComputedStyle(mediaIndicator).opacity != '0.1') {
   slides.forEach(setSlidePosition);
 } else {
 
-  // Make the first slide the last in order to make maintaining the code easier. (if the carousel is infinite, which was the first idea)
+  // Make the first slide the last in order to make maintaining the code easier. (if the carousel is infinite, which was the first idea.)
+  // But fs you don't use this function, the rest of the code won't work.
   const swapSlidesInArray = () => {
     const swapedElement = slides.splice(0, 1)[0];
     slides.splice(2, 0, swapedElement);
@@ -273,14 +275,12 @@ if (document.body.clientWidth < 390) {
 
 
 const inputForms = document.getElementsByClassName('js-input-form')
-// const inputFields = document.getElementsByClassName('js-input-field')
-
 const loginBtns = document.getElementsByClassName('js-login-button')
 const registerBtn = document.querySelector('.js-register-button')
+const submitButtons = document.getElementsByClassName('js-submit-button')
 const loginPopup = document.querySelector('.js-login-popup');
 const signupPopup = document.querySelector('.js-signup-popup');
 const overlay = document.querySelector('.overlay');
-const submitButtons = document.getElementsByClassName('js-submit-button')
 const closingClass = 'is-hidden';
 
 
@@ -354,6 +354,8 @@ function closeSignupPopup () {
 
   if(!overlay.classList.contains(closingClass)) {
     overlay.classList.toggle(closingClass)
+  } else {
+    signupPopup.classList.add(closingClass)
   }
 
   document.removeEventListener('click', closeSignupPopup)
@@ -471,3 +473,12 @@ signupPopup.addEventListener('click', event => event.stopPropagation());
 
 // };
 // cloneSlides();
+
+
+
+
+
+// For RS School
+// console.log('Grade for part 1:\n1. Вёрстка валидная +10 \n2. Вёрстка семантическая +20 \n3. Вёрстка соответствует макету +48\n4. для построения сетки используются флексы +2\n5. при уменьшении масштаба страницы браузера вёрстка размещается по центру, а не сдвигается в сторону +2\n6. фоновый цвет (цвет есть только белый в секции stories) тянется на всю ширину страницы +2\n7. иконки добавлены в формате .svg + 2\n8. изображения добавлены в формате .jpg +2\n9. есть favicon +2\n10. плавная прокрутка по якорям +5\n11. иконки соцсетей в футере при нажатии на них ведут на гитхаб автора проекта и на страницу курса + 5\n12. визуальные эффекты, например, изменение цвета фона или цвета шрифта. + 5\n13. плавное изменение внешнего вида элемента при наведении и клике не влияющее на соседние элементы +5\nTotal: 110 = 100 (max)')
+// console.log('Grade for part 2: \n1. Вёрстка соответствует макету. Ширина экрана 390px +48:\n • <header> +6\n • preview 9\n• steps +9\n• destinations +9\n• stories +9\n• <footer> +6\n2. Нет полосы прокрутки при ширине страницы от 1440рх до 320px +15\n3. На ширине экрана 390рх и меньше реализовано адаптивное меню:\n • при ширине страницы 390рх панель навигации скрывается (скрывается на 860px, потому что невозможно красиво поместить всю панель на ширине 391px), появляется бургер-иконка +2\n • при нажатии на бургер-иконку плавно появляется адаптивное меню +4\n • адаптивное меню соответствует макету +4\n • при нажатии на крестик адаптивное меню плавно скрывается уезжая за экран +4\n • ссылки в адаптивном меню работают, обеспечивая плавную прокрутку по якорям +4 (все кроме Account, она пока что просто закрывает меню)\n • при клике по ссылке в адаптивном меню адаптивное меню плавно скрывается, также скрытие меню происходит если сделать клик вне данного окна +4\nTotal: 85 = 75 (max)')
+// console.log('Grade for part 3: \n1. Слайдер изображений в секции  + 50:\n • принцип карусели\n • точки внизу соответствую номеру слайда\n • анимация плавного перемещения\n2. Нажатие на кнопку Login (кнопка Account в мобильной версии) показывает сверстанный логин попап + 50:\n • логин попап соответствует верстке его закрытие происходит при клике вне попапа +25\n • логин попап имеет 2 инпута (email и пароль) при нажатии на кнопку Sign In показывается браузерный алерт с введенными данными +25\n3. Нажатие на кнопку Register на Login попапе меняет разметку попапа на разметку Sign Up попапа согласно макету. +25')
